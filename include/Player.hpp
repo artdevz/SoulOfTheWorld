@@ -6,6 +6,7 @@
 class Player {
 
 public:
+
     Player();
 
     void Update();
@@ -13,8 +14,10 @@ public:
     void Draw();
 
 private:
+
     Vector2 position;
-    float moveSpeed;    
+    float moveSpeed; 
+       
 };
 
 #endif
