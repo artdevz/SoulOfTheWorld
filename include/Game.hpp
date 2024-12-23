@@ -19,6 +19,7 @@ private:
 
     Player* player;
     UI ui;
+    void DrawIcon();
     void DrawHP();
     void DrawMP();
     void DrawHotBar();
