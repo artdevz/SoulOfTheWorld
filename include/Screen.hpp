@@ -1,19 +1,22 @@
 #ifndef SCREEN_HPP
 #define SCREEN_HPP
 
-enum ScreenType { MAIN, PLAY, GAME };
+#include "Player.hpp"
+
+enum ScreenType { SCREEN_MAIN, SCREEN_SELECT, SCREEN_GAME };
 
 class Screen {
 
 public:
 
     ScreenType screenType;
-
+    
     Screen();
-    void MainMenuScreen();
-    void PlayMenuScreen();
-    void GameScreen();
-
+    void ClearScreen();
+    virtual void Init() = 0;
+    virtual void Update() = 0;
+    virtual void Draw() = 0;
+    
 private:
 
 };

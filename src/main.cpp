@@ -1,34 +1,47 @@
 #include "raylib.h"
-#include "../include/Player.hpp"
-#include "../include/UI.hpp"
+#include "../include/Menu.hpp"
+#include "../include/Select.hpp"
 #include "../include/Game.hpp"
-#include "../include/Screen.hpp"
 
-int main() {
-    
+int main() {    
     InitWindow(1280, 720, "Soul of The World");
-    Screen screen;
 
-    // Game game;
-    // game.Init();
-
+    Screen* screen = new Menu();
+    
     SetTargetFPS(60);
+
+    Player* player = nullptr;
 
     while (!WindowShouldClose()) { 
         
-        switch (screen.screenType) {
+        screen->Update();
+        screen->Draw();
 
-        case MAIN: screen.MainMenuScreen(); break;
-        case PLAY: screen.PlayMenuScreen(); break;
-        case GAME: screen.GameScreen(); break;
+        if (screen->screenType == SCREEN_GAME) {
+            // Se o jogador não foi inicializado, crie um novo
+            if (player == nullptr) {
+                player = new Player(FIRE); // Inicializa o player com o elemento FIRE (por exemplo)
+            }
+        }
+        
+        switch (screen->screenType) {
+
+            case SCREEN_MAIN: delete screen; screen = new Menu(); break;
+            case SCREEN_SELECT: delete screen; screen = new Select(); break;
+            case SCREEN_GAME:
+                if (player != nullptr) {
+                    Game* gameScreen = new Game();
+                    gameScreen->SetPlayer(player);
+                    delete screen;
+                    screen = gameScreen;
+                } 
+                break;
         
         }
 
-        // game.Update();
-        // game.Draw();
-
     }
     
+    delete player;
     CloseWindow();
     return 0;
 }

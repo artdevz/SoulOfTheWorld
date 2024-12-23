@@ -1,16 +1,27 @@
 #include "raylib.h"
 #include "../include/Game.hpp"
+#include "../include/Element.hpp"
 
 Game::Game() {
-    player = Player();
+    screenType = SCREEN_GAME;
+    player = nullptr;
     ui = UI();
 }
 
-void Game::Init() {}
+void Game::SetPlayer(Player* p) {
+    player = p;
+}
+
+void Game::Init() {
+    // player = Player();
+    ui = UI();
+}
 
 void Game::Update() {
-
-    player.Update();
+    if (player != nullptr) {
+        player->Update();
+    }
+    // player.Update();
 
     ui.Update();
 
@@ -21,7 +32,9 @@ void Game::Draw() {
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
-    player.Draw();
+    if (player != nullptr) {
+        player->Draw();
+    }
     ui.Draw();
 
     EndDrawing();
