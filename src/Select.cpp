@@ -1,8 +1,19 @@
 #include "raylib.h"
 #include "Select.hpp"
 
+Element Select::selectedElement = WATER;
+
 Select::Select() {
     screenType = SCREEN_SELECT;
+}
+
+Select::Select(Element element) {
+    screenType = SCREEN_SELECT;
+    selectedElement = element;    
+}
+
+Element Select::getSelectedElement() {
+    return selectedElement;
 }
 
 void Select::Init() {}
@@ -51,7 +62,7 @@ void Select::Draw() {
     DrawText("Fire - 15%", posXfireButton+posXnameChange , posYname, nameFont, WHITE);
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), buttonFire)) {
-        // element = FIRE;
+        Select::selectedElement = FIRE;
         
         screenType = SCREEN_GAME;
     }
@@ -63,7 +74,7 @@ void Select::Draw() {
     DrawText("Water - 40%", posXwaterButton+posXnameChange, posYname, nameFont, WHITE);
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), buttonWater)) {
-        // element = WATER;
+        Select::selectedElement = WATER;
         
         screenType = SCREEN_GAME;
     }
@@ -75,7 +86,7 @@ void Select::Draw() {
     DrawText("Earth - 5%", posXearthButton+posXnameChange, posYname, nameFont, WHITE);
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), buttonEarth)) {
-        // element = EARTH;
+        Select::selectedElement = EARTH;
         
         screenType = SCREEN_GAME;
     }
@@ -87,7 +98,7 @@ void Select::Draw() {
     DrawText("Air - 75%", posXairButton+posXnameChange, posYname, nameFont, WHITE);
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), buttonAir)) {
-        // element = AIR;
+        Select::selectedElement = AIR;
         
         screenType = SCREEN_GAME;
     }

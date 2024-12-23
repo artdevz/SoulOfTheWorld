@@ -1,13 +1,18 @@
-#ifndef PLAYMENU_HPP
-#define PLAYMENU_HPP
+#ifndef SELECT_HPP
+#define SELECT_HPP
 
 #include "Screen.hpp"
+#include "Element.hpp"
 
 class Select : public Screen {
 
 public:
 
+    static Element selectedElement;
+
     Select();
+    Select(Element);
+    static Element getSelectedElement();
     void Init() override;
     void Update() override;
     void Draw() override;

@@ -16,18 +16,18 @@ int main() {
         
         screen->Update();
         screen->Draw();
-
-        if (screen->screenType == SCREEN_GAME) {
-            // Se o jogador não foi inicializado, crie um novo
-            if (player == nullptr) {
-                player = new Player(FIRE); // Inicializa o player com o elemento FIRE (por exemplo)
-            }
-        }
         
+        if (screen->screenType == SCREEN_GAME && player == nullptr) player = new Player(Select::getSelectedElement()); 
+          
         switch (screen->screenType) {
 
             case SCREEN_MAIN: delete screen; screen = new Menu(); break;
-            case SCREEN_SELECT: delete screen; screen = new Select(); break;
+            
+            case SCREEN_SELECT: 
+                delete screen;
+                screen = new Select(); 
+                break;
+
             case SCREEN_GAME:
                 if (player != nullptr) {
                     Game* gameScreen = new Game();

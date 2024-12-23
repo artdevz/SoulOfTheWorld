@@ -4,13 +4,13 @@
 Player::Player() {
     position = {640, 360};
     moveSpeed = 5.0f;
-    element = FIRE;    
+    element = WATER;    
 }
 
 Player::Player(Element element) {
     position = {640, 360};
     moveSpeed = 5.0f;
-    element = element;
+    this->element = element;
 }
 
 void Player::Update() {
@@ -27,11 +27,11 @@ void Player::Draw() {
     switch (this->element) {
         
         case FIRE:
-            DrawCircleV(position, 20, ORANGE);
+            DrawCircleV(position, 20, ORANGE);                       
             break;
 
         case WATER:
-            DrawCircleV(position, 20, BLUE);
+            DrawCircleV(position, 20, BLUE);            
             break;
 
         case EARTH:
