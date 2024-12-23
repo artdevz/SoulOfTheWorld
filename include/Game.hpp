@@ -19,6 +19,9 @@ private:
 
     Player* player;
     UI ui;
+    void DrawHP();
+    void DrawMP();
+    void DrawHotBar();
 
 };
 
