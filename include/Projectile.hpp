@@ -1,0 +1,1 @@
+// Entidades que são projéteis, podem ser do tipo Físico ou Mágico

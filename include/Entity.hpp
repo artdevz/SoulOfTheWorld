@@ -1,0 +1,1 @@
+// Toda entidade que mexe e não mexe

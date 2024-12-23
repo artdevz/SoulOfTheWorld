@@ -1,0 +1,1 @@
+// Feitiços que o Jogador e Inimigos poderão usar
