@@ -1,0 +1,33 @@
+# Compilation
+*.exe
+*.out
+*.app
+*.o
+*.a
+*.so
+*.dylib
+
+# Build directory
+/build/
+bin/
+obj/
+
+# IDE Configs
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-workspace
+*.suo
+*.user
+*.swp
+*.log
+
+# Cache and Temporary
+*.tmp
+*.cache
+*.lock
+*.bak
+
+# Specific System Files
+.DS_Store
+Thumbs.db
