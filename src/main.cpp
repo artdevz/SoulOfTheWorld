@@ -21,7 +21,10 @@ int main() {
           
         switch (screen->screenType) {
 
-            case SCREEN_MAIN: delete screen; screen = new Menu(); break;
+            case SCREEN_MAIN: 
+                delete screen; 
+                screen = new Menu(); 
+                break;
             
             case SCREEN_SELECT: 
                 delete screen;

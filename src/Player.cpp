@@ -3,22 +3,24 @@
 
 Player::Player() {
     position = {640, 360};
-    moveSpeed = 5.0f;
+    moveSpeed = 100.0f;
     element = WATER;    
 }
 
 Player::Player(Element element) {
     position = {640, 360};
-    moveSpeed = 5.0f;
+    moveSpeed = 100.0f;
     this->element = element;
 }
 
 void Player::Update() {
 
-    if (IsKeyDown(KEY_D)) position.x += moveSpeed;
-    if (IsKeyDown(KEY_A)) position.x -= moveSpeed;
-    if (IsKeyDown(KEY_W)) position.y -= moveSpeed;
-    if (IsKeyDown(KEY_S)) position.y += moveSpeed;
+    float deltaTime = GetFrameTime();
+
+    if (IsKeyDown(KEY_D)) position.x += moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_A)) position.x -= moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_W)) position.y -= moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_S)) position.y += moveSpeed * deltaTime;
 
 }
 
@@ -48,3 +50,7 @@ void Player::Draw() {
         }
     
 }
+
+// Vector2 Player::GetPosition() const {
+//     return position;
+// }

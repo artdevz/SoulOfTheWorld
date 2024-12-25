@@ -3,7 +3,7 @@
 #include "../include/Element.hpp"
 #include <string>
 
-Game::Game() {
+Game::Game() : camera({640, 360}, {1280 / 2, 720 / 2}) {
 
     screenType = SCREEN_GAME;
     player = nullptr;
@@ -23,9 +23,10 @@ void Game::Update() {
     
     if (player != nullptr) {
         player->Update();
+        camera.Update(player->GetPosition());
     }
     // player.Update();
-
+    
     ui.Update();
 
 }
@@ -35,7 +36,16 @@ void Game::Draw() {
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
-    if (player != nullptr) player->Draw();
+    if (player != nullptr) {
+        BeginMode2D(camera.GetCamera2D());
+
+        for (int y = 0; y < 2000; y += 64) for (int x = 0; x < 2000; x += 64) DrawRectangleLines(x, y, 64, 64, LIGHTGRAY);
+
+        player->Draw();
+
+        EndMode2D();
+    }    
+
     ui.Draw();
 
     DrawIcon();

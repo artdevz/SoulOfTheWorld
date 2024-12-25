@@ -2,6 +2,7 @@
 #define GAME_HPP
 
 #include "Screen.hpp"
+#include "GameCamera.hpp"
 #include "Player.hpp"
 #include "UI.hpp"
 
@@ -18,7 +19,9 @@ public:
 private:
 
     Player* player;
+    GameCamera camera;
     UI ui;
+    
     void DrawIcon();
     void DrawHP();
     void DrawMP();

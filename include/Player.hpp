@@ -16,6 +16,8 @@ public:
 
     void Draw();
 
+    Vector2 GetPosition() const { return position; }
+
 private:
 
     Vector2 position;
