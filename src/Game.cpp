@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "../include/Game.hpp"
 #include "../include/Element.hpp"
+#include "../include/Inventory.hpp"
 #include <string>
 
 Game::Game() : camera({640, 360}, {1280 / 2, 720 / 2}) {
@@ -8,6 +9,7 @@ Game::Game() : camera({640, 360}, {1280 / 2, 720 / 2}) {
     screenType = SCREEN_GAME;
     player = nullptr;
     ui = UI();
+    inventory = Inventory();
 
 }
 
@@ -22,10 +24,12 @@ void Game::Init() {
 void Game::Update() {
     
     if (player != nullptr) {
+
         player->Update();
         camera.Update(player->GetPosition());
-    }
-    // player.Update();
+        inventory.Update();
+
+    }    
     
     ui.Update();
 
@@ -39,7 +43,7 @@ void Game::Draw() {
     if (player != nullptr) {
         BeginMode2D(camera.GetCamera2D());
 
-        for (int y = 0; y < 2000; y += 64) for (int x = 0; x < 2000; x += 64) DrawRectangleLines(x, y, 64, 64, LIGHTGRAY);
+        for (int y = 0; y < 2000; y += 16) for (int x = 0; x < 2000; x += 16) DrawRectangleLines(x, y, 16, 16, LIGHTGRAY);
 
         player->Draw();
 
@@ -47,6 +51,7 @@ void Game::Draw() {
     }    
 
     ui.Draw();
+    inventory.Draw();
 
     DrawIcon();
     DrawHP();

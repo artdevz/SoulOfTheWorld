@@ -5,7 +5,7 @@ GameCamera::GameCamera(Vector2 target, Vector2 offset) {
     camera.target = target;
     camera.offset = offset;
     camera.rotation = 0;
-    camera.zoom = 1;
+    camera.zoom = 2;
 
 }
 
