@@ -10,3 +10,21 @@
 [Q] - Itens Suportes (Poções de Cura, Antídotos, AntiQueimaduras...)
 [R] - Esquiva
 */
+
+#ifndef HOTBAR_HPP
+#define HOTBAR_HPP
+
+class Hotbar {
+
+public:
+
+    Hotbar();
+    void Init();
+    void Update();
+    void Draw();
+
+private:
+
+};
+
+#endif

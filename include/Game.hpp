@@ -2,8 +2,9 @@
 #define GAME_HPP
 
 #include "Screen.hpp"
+#include "Cam.hpp"
+#include "Hotbar.hpp"
 #include "Inventory.hpp"
-#include "GameCamera.hpp"
 #include "Player.hpp"
 #include "UI.hpp"
 
@@ -20,15 +21,15 @@ public:
 private:
 
     Player* player;
-    GameCamera camera;
+    Cam camera;
+    Hotbar hotbar;
     UI ui;
     Inventory inventory;
     
     void DrawIcon();
     void DrawHP();
     void DrawMP();
-    void DrawHotBar();
-
+    
 };
 
 #endif

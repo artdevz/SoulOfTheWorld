@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "../include/Game.hpp"
 #include "../include/Element.hpp"
+#include "../include/Hotbar.hpp"
 #include "../include/Inventory.hpp"
 #include <string>
 
@@ -9,6 +10,7 @@ Game::Game() : camera({640, 360}, {1280 / 2, 720 / 2}) {
     screenType = SCREEN_GAME;
     player = nullptr;
     ui = UI();
+    hotbar = Hotbar();
     inventory = Inventory();
 
 }
@@ -52,11 +54,11 @@ void Game::Draw() {
 
     ui.Draw();
     inventory.Draw();
+    hotbar.Draw();
 
     DrawIcon();
     DrawHP();
-    DrawMP();
-    DrawHotBar();  
+    DrawMP();    
 
     EndDrawing();
 
@@ -96,29 +98,5 @@ void Game::DrawMP() {
 
     std::string mpText = std::to_string(currentMP) + "/" + std::to_string(maxMP);
     DrawText(mpText.c_str(), 195, 80, 16, WHITE);
-
-}
-
-void Game::DrawHotBar() {
-
-    Color standardHotKeyBackground = Color{ 0x7C, 0x7C, 0x7C, 255 };
-
-    float hotKeyPosX = 435;
-    float hoyKeyPosY = 640;
-    float hotKeyPosXIncrement = 60;
-    float hotKeyDimension = 50;
-
-    Rectangle hotkey = { hotKeyPosX, hoyKeyPosY, hotKeyDimension, hotKeyDimension };
-    DrawRectangleRec( hotkey, standardHotKeyBackground);
-    DrawText("LB", hotKeyPosX+5, hoyKeyPosY+5, 16, WHITE);
-
-    for (int i = 1; i < 6; i++) {
-        hotKeyPosX += hotKeyPosXIncrement;
-        DrawRectangleRec( { hotKeyPosX, hoyKeyPosY, hotKeyDimension, hotKeyDimension}, standardHotKeyBackground); // 1 - 5
-        DrawText(std::to_string(i).c_str(), hotKeyPosX+5, hoyKeyPosY+5, 16, WHITE);
-    }
-
-    DrawRectangleRec( {hotKeyPosX+hotKeyPosXIncrement, hoyKeyPosY, hotKeyDimension, hotKeyDimension}, standardHotKeyBackground);
-    DrawText("RB", hotKeyPosX+hotKeyPosXIncrement+5, hoyKeyPosY+5, 16, WHITE);
 
 }

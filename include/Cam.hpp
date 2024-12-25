@@ -1,13 +1,13 @@
-#ifndef CAMERA_HPP
-#define CAMERA_HPP
+#ifndef CAM_HPP
+#define CAM_HPP
 
 #include "raylib.h"
 
-class GameCamera {
+class Cam {
 
 public:
 
-    GameCamera(Vector2 , Vector2);
+    Cam(Vector2 , Vector2);
     void Update(Vector2);
     Camera2D GetCamera2D() const;
 
