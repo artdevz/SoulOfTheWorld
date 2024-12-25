@@ -7,7 +7,7 @@ Inventory::Inventory() {}
 
 void Inventory::Update() {
 
-    if (IsKeyPressed(KEY_T)) inventoryState = !inventoryState;
+    if (IsKeyPressed(KEY_E)) inventoryState = !inventoryState;
 
 }
 

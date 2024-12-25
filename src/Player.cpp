@@ -17,10 +17,10 @@ void Player::Update() {
 
     float deltaTime = GetFrameTime();
 
-    if (IsKeyDown(KEY_D)) position.x += moveSpeed * deltaTime;
-    if (IsKeyDown(KEY_A)) position.x -= moveSpeed * deltaTime;
-    if (IsKeyDown(KEY_W)) position.y -= moveSpeed * deltaTime;
-    if (IsKeyDown(KEY_S)) position.y += moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_D)) (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))? position.x += 10*moveSpeed * deltaTime : position.x += moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_A)) (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))? position.x -= 10*moveSpeed * deltaTime : position.x -= moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_W)) (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))? position.y -= 10*moveSpeed * deltaTime : position.y -= moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_S)) (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))? position.y += 10*moveSpeed * deltaTime : position.y += moveSpeed * deltaTime;
 
 }
 
