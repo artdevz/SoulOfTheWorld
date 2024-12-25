@@ -5,7 +5,12 @@
 Hotbar::Hotbar() {}
 
 void Hotbar::Init() {}
-void Hotbar::Update() {}
+
+void Hotbar::Update() {
+
+    // if (IsKeyPressed(MOUSE_BUTTON_LEFT)); ... To Do
+
+}
 
 void Hotbar::Draw() {
 

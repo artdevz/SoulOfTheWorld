@@ -4,6 +4,7 @@
 #include "Screen.hpp"
 #include "Cam.hpp"
 #include "Hotbar.hpp"
+#include "HUD.hpp"
 #include "Inventory.hpp"
 #include "Player.hpp"
 #include "UI.hpp"
@@ -23,12 +24,9 @@ private:
     Player* player;
     Cam camera;
     Hotbar hotbar;
+    HUD hud;
     UI ui;
     Inventory inventory;
-    
-    void DrawIcon();
-    void DrawHP();
-    void DrawMP();
     
 };
 
