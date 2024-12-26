@@ -71,11 +71,3 @@ void Spell::Draw() {
 bool Spell::IsActive() const {
     return active;
 }
-
-void Spell::SetSummonerPosition(Vector2 currentSummonerPosition) {
-    summonerPosition = currentSummonerPosition;
-}
-
-void Spell::SetTargetPosition(Vector2 target) {
-    targetPosition = target;
-}

@@ -19,9 +19,6 @@ public:
 
     bool IsActive() const;
 
-    void SetSummonerPosition(Vector2 summonerPosition);
-    void SetTargetPosition(Vector2 target); 
-
 private:
 
     Vector2 summonerPosition;
