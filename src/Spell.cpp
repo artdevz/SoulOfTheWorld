@@ -22,11 +22,8 @@ void Spell::Cast() {
         direction = {targetPosition.x - summonerPosition.x, targetPosition.y - summonerPosition.y};
         float magnitude = sqrt(direction.x * direction.x + direction.y * direction.y); // Modulo do Vetor
         
-        if (magnitude) {
-            direction.x /= magnitude;
-            direction.y /= magnitude;
-        }
-        
+        if (magnitude) direction = {direction.x / magnitude, direction.y / magnitude};
+                
     }
 
 }
@@ -37,8 +34,9 @@ void Spell::Update(Vector2 spellSummonerPosition, Vector2 mousePosition) {
         
         if (!active) {
             summonerPosition = spellSummonerPosition;
-            targetPosition = mousePosition;    
-            Cast();        
+            targetPosition = mousePosition;              
+            Cast();
+                 
         }
         
     }
@@ -46,7 +44,7 @@ void Spell::Update(Vector2 spellSummonerPosition, Vector2 mousePosition) {
     if (active) {
 
         float deltaTime = GetFrameTime();
-    
+        
         // Current Distance
         float distance = sqrt(
             (currentPosition.x - summonerPosition.x) * (currentPosition.x - summonerPosition.x) +
@@ -54,15 +52,12 @@ void Spell::Update(Vector2 spellSummonerPosition, Vector2 mousePosition) {
         );
 
         // Max Range
-        if (distance > range) {
-            active = false;
-            currentPosition = summonerPosition;
-        }
+        if (distance > range) active = false;
 
         // Trace
         currentPosition.x += direction.x * spellSpeed * deltaTime;
-        currentPosition.y += direction.y * spellSpeed * deltaTime;
-
+        currentPosition.y += direction.y * spellSpeed * deltaTime;        
+        
     }
 
 }
@@ -84,65 +79,3 @@ void Spell::SetSummonerPosition(Vector2 currentSummonerPosition) {
 void Spell::SetTargetPosition(Vector2 target) {
     targetPosition = target;
 }
-
-// Vector2 Spell::currentPosition = {0, 0};
-// // Vector2 Spell::targetPosition = {0, 0};
-
-// Spell::Spell() : 
-//     summonerPosition({0, 0}),
-//     // currentPosition({0, 0}),
-//     range(300),
-//     spellSpeed(5),
-//     active(false) {}
-
-// Spell::Spell(Vector2 startPosition) :
-//     summonerPosition(startPosition), 
-//     // currentPosition(startPosition), 
-//     range(300), 
-//     spellSpeed(5), 
-//     active(false) {
-//         this->currentPosition = startPosition;
-//     }
-
-// void Spell::Cast(Vector2 targetPosition) {
-//     // this->targetPosition = targetPosition;
-//     direction = {targetPosition.x - summonerPosition.x, targetPosition.y - summonerPosition.y};
-//     float magnitude = sqrt(direction.x * direction.x + direction.y * direction.y);
-
-//     if (magnitude > 0) {
-//         direction.x /= magnitude;
-//         direction.y /= magnitude;
-//     }
-
-//     currentPosition = summonerPosition;
-//     active = true;
-
-// }
-
-// void Spell::Update() {
-    
-//     if (active) {
-
-//         // Current Distance
-//         float distance = sqrt(
-//             (currentPosition.x - summonerPosition.x) * (currentPosition.x - summonerPosition.x) +
-//             (currentPosition.y - summonerPosition.y) * (currentPosition.y - summonerPosition.y)
-//         );
-        
-//         // Max Range
-//         if (distance > range) {
-//             active = false;
-//             currentPosition = summonerPosition;
-//         }
-
-//         // Trace
-//         currentPosition.x += direction.x * spellSpeed;
-//         currentPosition.y += direction.y * spellSpeed;
-
-//         Draw();
-
-//     }
-
-    
-
-// }
