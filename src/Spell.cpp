@@ -67,7 +67,3 @@ void Spell::Draw() {
     if (active) DrawCircleV(currentPosition, 8, RED);
 
 }
-
-bool Spell::IsActive() const {
-    return active;
-}

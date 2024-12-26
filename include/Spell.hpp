@@ -15,9 +15,7 @@ public:
 
     void Cast();
     void Update(Vector2, Vector2);
-    void Draw();    
-
-    bool IsActive() const;
+    void Draw();
 
 private:
 
