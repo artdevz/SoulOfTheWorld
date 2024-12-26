@@ -2,28 +2,31 @@
 #include "../include/Player.hpp"
 
 Player::Player() {
-    position = {640, 360};
-    moveSpeed = 5.0f;
+    position = {0, 0};
+    moveSpeed = 100.0f;
     element = WATER;    
 }
 
 Player::Player(Element element) {
-    position = {640, 360};
-    moveSpeed = 5.0f;
+    position = {0, 0};
+    moveSpeed = 100.0f;
     this->element = element;
 }
 
 void Player::Update() {
 
-    if (IsKeyDown(KEY_D)) position.x += moveSpeed;
-    if (IsKeyDown(KEY_A)) position.x -= moveSpeed;
-    if (IsKeyDown(KEY_W)) position.y -= moveSpeed;
-    if (IsKeyDown(KEY_S)) position.y += moveSpeed;
+    float deltaTime = GetFrameTime();
+
+    if (IsKeyDown(KEY_D)) (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))? position.x += 10*moveSpeed * deltaTime : position.x += moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_A)) (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))? position.x -= 10*moveSpeed * deltaTime : position.x -= moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_W)) (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))? position.y -= 10*moveSpeed * deltaTime : position.y -= moveSpeed * deltaTime;
+    if (IsKeyDown(KEY_S)) (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))? position.y += 10*moveSpeed * deltaTime : position.y += moveSpeed * deltaTime;
 
 }
 
 void Player::Draw() {
-
+    const char* coords = TextFormat("X: %.2f , Y: %.2f", position.x, position.y);
+    DrawText(coords, 200, 200, 24, BLACK);
     switch (this->element) {
         
         case FIRE:

@@ -2,46 +2,50 @@
 #include "../include/Menu.hpp"
 #include "../include/Select.hpp"
 #include "../include/Game.hpp"
+#include <memory>
 
 int main() {    
     InitWindow(1280, 720, "Soul of The World");
 
-    Screen* screen = new Menu();
-    
-    SetTargetFPS(60);
-
-    Player* player = nullptr;
+    std::shared_ptr<Screen> screen = std::make_unique<Menu>();
+    std::unique_ptr<Player> player = nullptr;
+    std::shared_ptr<Game> game = nullptr;
+        
+    SetTargetFPS(60);    
 
     while (!WindowShouldClose()) { 
         
         screen->Update();
         screen->Draw();
         
-        if (screen->screenType == SCREEN_GAME && player == nullptr) player = new Player(Select::getSelectedElement()); 
-          
+        if (screen->screenType == SCREEN_GAME && !game) {
+
+            game = std::make_shared<Game>();
+
+            if (!player) player = std::make_unique<Player>(Select::getSelectedElement());
+            
+            game->SetPlayer(player.get());
+            screen = game;
+
+        }
+
         switch (screen->screenType) {
 
-            case SCREEN_MAIN: delete screen; screen = new Menu(); break;
+            case SCREEN_MAIN: 
+                screen = std::make_unique<Menu>(); 
+                break;
             
             case SCREEN_SELECT: 
-                delete screen;
-                screen = new Select(); 
+                screen = std::make_unique<Select>();
                 break;
 
             case SCREEN_GAME:
-                if (player != nullptr) {
-                    Game* gameScreen = new Game();
-                    gameScreen->SetPlayer(player);
-                    delete screen;
-                    screen = gameScreen;
-                } 
                 break;
         
         }
 
-    }
+    }   
     
-    delete player;
     CloseWindow();
     return 0;
 }
