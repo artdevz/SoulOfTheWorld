@@ -7,6 +7,7 @@
 #include "HUD.hpp"
 #include "Inventory.hpp"
 #include "Player.hpp"
+#include "Spell.hpp"
 #include "UI.hpp"
 
 class Game : public Screen {
@@ -21,12 +22,13 @@ public:
 
 private:
 
-    Player* player;
     Cam camera;
     Hotbar hotbar;
     HUD hud;
-    UI ui;
     Inventory inventory;
+    Player* player;
+    Spell spell;
+    UI ui;
     
 };
 

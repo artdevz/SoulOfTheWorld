@@ -4,15 +4,15 @@
 #include "../include/Spell.hpp"
 
 Hotbar::Hotbar() {
-    spell = Spell();
+    // spell = Spell();
 }
 
 void Hotbar::Init() {}
 
 void Hotbar::Update() {
 
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) spell.Cast();
-    spell.Update();
+    // if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) spell.Cast();
+    // spell.Update();
 
 }
 

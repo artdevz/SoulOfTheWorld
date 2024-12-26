@@ -1,12 +1,12 @@
 // Isso não é a Classe Spell, e sim a Classe Basic Spell, mas por enquanto estará nomeado assim
 #include "../include/Spell.hpp"
 #include <cmath>
-
-Vector2 Spell::targetPosition = {0, 0};
+#include <iostream>
+#include "Spell.hpp"
 
 Spell::Spell() :
     summonerPosition( {640, 360} ),
-    currentPosition( {0, 0} ),
+    currentPosition( {0, 0} ),    
     range(300),
     spellSpeed(5),
     active(false) {}
@@ -16,22 +16,22 @@ void Spell::Cast() {
     if (!active) {
         active = true;
         currentPosition = summonerPosition;
-        targetPosition = GetMousePosition();
+        // Draw();
+        
     }
 
 }
 
 void Spell::Update() {
 
-    if (active) {
-        
-        currentPosition.x += 50;
-        currentPosition.y += 50;
-        if (currentPosition.x > 1000) active = !active;
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) Cast();
 
-    }
-
-    Draw();
+    float deltaTime = GetFrameTime();
+    
+    currentPosition.x += 100 * deltaTime;
+    currentPosition.y += 100 * deltaTime;
+    
+    if (currentPosition.x > 900) active = false;
 
 }
 

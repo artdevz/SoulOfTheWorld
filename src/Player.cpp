@@ -33,7 +33,7 @@ void Player::Draw() {
             break;
 
         case WATER:
-            // DrawCircleV(position, 20, BLUE);            
+            DrawCircleV(position, 20, BLUE);            
             break;
 
         case EARTH:
@@ -50,7 +50,3 @@ void Player::Draw() {
         }
     
 }
-
-// Vector2 Player::GetPosition() const {
-//     return position;
-// }

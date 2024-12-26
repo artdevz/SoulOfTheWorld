@@ -27,7 +27,7 @@ public:
 
 private:
 
-    Spell spell;
+    // Spell spell;
 
 };
 

@@ -10,29 +10,24 @@ class Spell {
 
 public:
 
-    Spell();
-    // Spell(Vector2 startPosition);
+    Spell();    
 
     void Cast();
     void Update();
-    void Draw();
-    
-    bool IsActive() const;
+    void Draw();    
 
-     
+    bool IsActive() const;
 
 private:
 
     Vector2 summonerPosition;
     Vector2 currentPosition;
-    //Vector2 targetPosition;
     Vector2 direction;
 
     float range;
     float spellSpeed;
     bool active;
 
-    static Vector2 targetPosition;
 
 };
 

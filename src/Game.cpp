@@ -4,18 +4,20 @@
 #include "../include/Hotbar.hpp"
 #include "../include/HUD.hpp"
 #include "../include/Inventory.hpp"
+#include "../include/Spell.hpp"
 #include <string>
 
-Game::Game() : camera({640, 360}, {1280 / 2, 720 / 2}) {
-
-    screenType = SCREEN_GAME;
-    player = nullptr;
-    ui = UI();
-    hotbar = Hotbar();
-    hud = HUD();
-    inventory = Inventory();
-
-}
+Game::Game() :
+    Screen(),
+    camera({640, 360}, {1280 / 2, 720 / 2}),    
+    hotbar(),
+    hud(),
+    inventory(),
+    player(nullptr),
+    spell(), 
+    ui() {
+        screenType = SCREEN_GAME;
+    }
 
 void Game::SetPlayer(Player* p) {
     player = p;
@@ -33,6 +35,7 @@ void Game::Update() {
         camera.Update(player->GetPosition());
         hotbar.Update();
         inventory.Update();
+        spell.Update();
 
     }    
     
@@ -49,7 +52,7 @@ void Game::Draw() {
         BeginMode2D(camera.GetCamera2D());
 
         for (int y = 0; y < 2000; y += 16) for (int x = 0; x < 2000; x += 16) DrawRectangleLines(x, y, 16, 16, LIGHTGRAY);
-
+        
         player->Draw();
 
         EndMode2D();
@@ -58,7 +61,8 @@ void Game::Draw() {
     ui.Draw();
     inventory.Draw();
     hotbar.Draw();
-    hud.Draw();        
+    hud.Draw();
+    spell.Draw();        
 
     EndDrawing();
 
