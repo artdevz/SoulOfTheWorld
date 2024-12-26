@@ -2,13 +2,13 @@
 #include "../include/Player.hpp"
 
 Player::Player() {
-    position = {640, 360};
+    position = {0, 0};
     moveSpeed = 100.0f;
     element = WATER;    
 }
 
 Player::Player(Element element) {
-    position = {640, 360};
+    position = {0, 0};
     moveSpeed = 100.0f;
     this->element = element;
 }
@@ -25,7 +25,8 @@ void Player::Update() {
 }
 
 void Player::Draw() {
-
+    const char* coords = TextFormat("X: %.2f , Y: %.2f", position.x, position.y);
+    DrawText(coords, 200, 200, 24, BLACK);
     switch (this->element) {
         
         case FIRE:

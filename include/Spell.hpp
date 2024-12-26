@@ -5,18 +5,21 @@
 #define SPELL_HPP
 
 #include "raylib.h"
+#include "Player.hpp"
 
 class Spell {
 
 public:
 
-    Spell();    
+    Spell();
 
     void Cast();
-    void Update();
+    void Update(Vector2 newSummonerPosition);
     void Draw();    
 
     bool IsActive() const;
+
+    void SetSummonerPosition(Vector2 summonerPosition); 
 
 private:
 

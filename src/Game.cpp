@@ -35,7 +35,7 @@ void Game::Update() {
         camera.Update(player->GetPosition());
         hotbar.Update();
         inventory.Update();
-        spell.Update();
+        spell.Update(player->GetPosition());
 
     }    
     
@@ -53,7 +53,13 @@ void Game::Draw() {
 
         for (int y = 0; y < 2000; y += 16) for (int x = 0; x < 2000; x += 16) DrawRectangleLines(x, y, 16, 16, LIGHTGRAY);
         
+        DrawRectangle(400, 400, 20, 20, BLACK);
+        DrawRectangle(400, 800, 20, 20, BLACK);
+        DrawRectangle(800, 400, 20, 20, BLACK);
+        DrawRectangle(800, 800, 20, 20, BLACK);
+
         player->Draw();
+        spell.Draw(); 
 
         EndMode2D();
     }    
@@ -61,8 +67,7 @@ void Game::Draw() {
     ui.Draw();
     inventory.Draw();
     hotbar.Draw();
-    hud.Draw();
-    spell.Draw();        
+    hud.Draw();           
 
     EndDrawing();
 

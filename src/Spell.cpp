@@ -3,9 +3,10 @@
 #include <cmath>
 #include <iostream>
 #include "Spell.hpp"
+#include "Player.hpp"
 
 Spell::Spell() :
-    summonerPosition( {640, 360} ),
+    summonerPosition( {0, 0} ),
     currentPosition( {0, 0} ),    
     range(300),
     spellSpeed(5),
@@ -16,33 +17,39 @@ void Spell::Cast() {
     if (!active) {
         active = true;
         currentPosition = summonerPosition;
-        // Draw();
         
     }
 
 }
 
-void Spell::Update() {
+void Spell::Update(Vector2 newSummonerPosition) {
 
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) Cast();
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        if(!active) summonerPosition = newSummonerPosition;
+        Cast();
+    }
 
     float deltaTime = GetFrameTime();
     
     currentPosition.x += 100 * deltaTime;
     currentPosition.y += 100 * deltaTime;
     
-    if (currentPosition.x > 900) active = false;
+    if (currentPosition.x > range + summonerPosition.x) active = false;
 
 }
 
 void Spell::Draw() {
 
-    if (active) DrawCircleV(currentPosition, 16, RED);
+    if (active) DrawCircleV(currentPosition, 8, RED);
 
 }
 
 bool Spell::IsActive() const {
     return active;
+}
+
+void Spell::SetSummonerPosition(Vector2 currentSummonerPosition) {
+    summonerPosition = currentSummonerPosition;
 }
 
 // Vector2 Spell::currentPosition = {0, 0};
