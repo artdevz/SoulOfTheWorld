@@ -28,9 +28,10 @@ void Game::Init() {
 void Game::Update() {
     
     if (player != nullptr) {
-
+        
         player->Update();
         camera.Update(player->GetPosition());
+        hotbar.Update();
         inventory.Update();
 
     }    

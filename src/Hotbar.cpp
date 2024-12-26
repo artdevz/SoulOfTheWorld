@@ -1,14 +1,18 @@
 #include "raylib.h"
 #include "../include/Hotbar.hpp"
 #include <string>
+#include "../include/Spell.hpp"
 
-Hotbar::Hotbar() {}
+Hotbar::Hotbar() {
+    spell = Spell();
+}
 
 void Hotbar::Init() {}
 
 void Hotbar::Update() {
 
-    // if (IsKeyPressed(MOUSE_BUTTON_LEFT)); ... To Do
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) spell.Cast();
+    spell.Update();
 
 }
 

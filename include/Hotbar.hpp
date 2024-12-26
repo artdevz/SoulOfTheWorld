@@ -14,6 +14,8 @@
 #ifndef HOTBAR_HPP
 #define HOTBAR_HPP
 
+#include "Spell.hpp"
+
 class Hotbar {
 
 public:
@@ -24,6 +26,8 @@ public:
     void Draw();
 
 private:
+
+    Spell spell;
 
 };
 
