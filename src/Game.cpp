@@ -35,7 +35,7 @@ void Game::Update() {
         camera.Update(player->GetPosition());
         hotbar.Update();
         inventory.Update();
-        spell.Update(player->GetPosition());
+        spell.Update(player->GetPosition(), GetMousePosition());
 
     }    
     

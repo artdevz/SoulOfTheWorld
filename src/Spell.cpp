@@ -1,40 +1,69 @@
 // Isso não é a Classe Spell, e sim a Classe Basic Spell, mas por enquanto estará nomeado assim
 #include "../include/Spell.hpp"
 #include <cmath>
-#include <iostream>
 #include "Spell.hpp"
 #include "Player.hpp"
 
 Spell::Spell() :
     summonerPosition( {0, 0} ),
-    currentPosition( {0, 0} ),    
+    currentPosition( {0, 0} ),
+    targetPosition( {0, 0} ),    
     range(300),
-    spellSpeed(5),
+    spellSpeed(100),
     active(false) {}
 
 void Spell::Cast() {
 
     if (!active) {
+
         active = true;
         currentPosition = summonerPosition;
+        
+        direction = {targetPosition.x - summonerPosition.x, targetPosition.y - summonerPosition.y};
+        float magnitude = sqrt(direction.x * direction.x + direction.y * direction.y); // Modulo do Vetor
+        
+        if (magnitude) {
+            direction.x /= magnitude;
+            direction.y /= magnitude;
+        }
         
     }
 
 }
 
-void Spell::Update(Vector2 newSummonerPosition) {
+void Spell::Update(Vector2 spellSummonerPosition, Vector2 mousePosition) {
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-        if(!active) summonerPosition = newSummonerPosition;
-        Cast();
+        
+        if (!active) {
+            summonerPosition = spellSummonerPosition;
+            targetPosition = mousePosition;    
+            Cast();        
+        }
+        
     }
 
-    float deltaTime = GetFrameTime();
+    if (active) {
+
+        float deltaTime = GetFrameTime();
     
-    currentPosition.x += 100 * deltaTime;
-    currentPosition.y += 100 * deltaTime;
-    
-    if (currentPosition.x > range + summonerPosition.x) active = false;
+        // Current Distance
+        float distance = sqrt(
+            (currentPosition.x - summonerPosition.x) * (currentPosition.x - summonerPosition.x) +
+            (currentPosition.y - summonerPosition.y) * (currentPosition.y - summonerPosition.y)
+        );
+
+        // Max Range
+        if (distance > range) {
+            active = false;
+            currentPosition = summonerPosition;
+        }
+
+        // Trace
+        currentPosition.x += direction.x * spellSpeed * deltaTime;
+        currentPosition.y += direction.y * spellSpeed * deltaTime;
+
+    }
 
 }
 
@@ -50,6 +79,10 @@ bool Spell::IsActive() const {
 
 void Spell::SetSummonerPosition(Vector2 currentSummonerPosition) {
     summonerPosition = currentSummonerPosition;
+}
+
+void Spell::SetTargetPosition(Vector2 target) {
+    targetPosition = target;
 }
 
 // Vector2 Spell::currentPosition = {0, 0};
@@ -111,75 +144,5 @@ void Spell::SetSummonerPosition(Vector2 currentSummonerPosition) {
 //     }
 
     
-
-// }
-
-// void Spell::Draw() {
-//     if(active) DrawCircleV(currentPosition, 16, RED);    
-// }
-
-// bool Spell::IsActive() const {
-//     return active;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// void Spell::BasicSpell() {
-
-//     // BeginDrawing();
-
-//     Vector2 summonerPosition = {640, 360}; // Centro
-//     Vector2 mousePosition = GetMousePosition();
-//     float range = 300;
-
-//     Vector2 direction = {
-//         mousePosition.x - summonerPosition.x,
-//         mousePosition.y - summonerPosition.y
-//     };
-
-//     float magnitude = sqrt(direction.x * direction.x + direction.y * direction.y);
-    
-//     if (magnitude > 0) {
-//         direction.x /= magnitude;
-//         direction.y /= magnitude;
-//     }
-    
-//     float spellSpeed = 5;
-    
-//     Vector2 currentPosition = summonerPosition;
-
-//     while (true) {
-        
-//         // Current Distance
-//         float distance = sqrt(
-//             (currentPosition.x - summonerPosition.x) * (currentPosition.x - summonerPosition.x) +
-//             (currentPosition.y - summonerPosition.y) * (currentPosition.y - summonerPosition.y)
-//         );
-        
-//         // Max Range
-//         if (distance > range || 
-//             (fabs(currentPosition.x - mousePosition.x) < spellSpeed && fabs(currentPosition.y - mousePosition.y) < spellSpeed))
-//             break;
-        
-//         DrawCircle(currentPosition.x - direction.x * spellSpeed, currentPosition.y - direction.y * spellSpeed, 16, RAYWHITE);
-//         DrawCircle(currentPosition.x, currentPosition.y, 16, RED);
-        
-//         // Trace
-//         currentPosition.x += direction.x * spellSpeed;
-//         currentPosition.y += direction.y * spellSpeed;
-//     }
-
-//     // EndDrawing();
 
 // }

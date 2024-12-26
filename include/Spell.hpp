@@ -14,17 +14,19 @@ public:
     Spell();
 
     void Cast();
-    void Update(Vector2 newSummonerPosition);
+    void Update(Vector2, Vector2);
     void Draw();    
 
     bool IsActive() const;
 
-    void SetSummonerPosition(Vector2 summonerPosition); 
+    void SetSummonerPosition(Vector2 summonerPosition);
+    void SetTargetPosition(Vector2 target); 
 
 private:
 
     Vector2 summonerPosition;
     Vector2 currentPosition;
+    Vector2 targetPosition;
     Vector2 direction;
 
     float range;
