@@ -1,13 +1,13 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "Screen.hpp"
+#include "roots/Screen.hpp"
 #include "Cam.hpp"
 #include "Hotbar.hpp"
 #include "HUD.hpp"
 #include "Inventory.hpp"
 #include "Player.hpp"
-#include "Spell.hpp"
+#include "spells/WaterBullet.hpp"
 #include "UI.hpp"
 
 class Game : public Screen {
@@ -27,7 +27,7 @@ private:
     HUD hud;
     Inventory inventory;
     Player* player;
-    Spell spell;
+    WaterBullet waterBullet;
     UI ui;
     
 };

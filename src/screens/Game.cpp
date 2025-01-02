@@ -1,10 +1,11 @@
 #include "raylib.h"
-#include "../include/Game.hpp"
+#include "../include/screens/Game.hpp"
 #include "../include/Element.hpp"
 #include "../include/Hotbar.hpp"
 #include "../include/HUD.hpp"
 #include "../include/Inventory.hpp"
-#include "../include/Spell.hpp"
+#include "../include/spells/WaterBullet.hpp"
+
 #include <string>
 
 Game::Game() :
@@ -14,7 +15,7 @@ Game::Game() :
     hud(),
     inventory(),
     player(nullptr),
-    spell(), 
+    waterBullet(), 
     ui() {
         screenType = SCREEN_GAME;
     }
@@ -35,7 +36,7 @@ void Game::Update() {
         camera.Update(player->GetPosition());
         hotbar.Update();
         inventory.Update();
-        spell.Update(player->GetPosition(), GetScreenToWorld2D(GetMousePosition(), camera.GetCamera2D()));
+        waterBullet.Update(player->GetPosition(), GetScreenToWorld2D(GetMousePosition(), camera.GetCamera2D()));
 
     }    
     
@@ -53,13 +54,13 @@ void Game::Draw() {
 
         for (int y = 0; y < 2000; y += 16) for (int x = 0; x < 2000; x += 16) DrawRectangleLines(x, y, 16, 16, LIGHTGRAY);
         
-        DrawRectangle(400, 400, 20, 20, BLACK);
-        DrawRectangle(400, 800, 20, 20, BLACK);
-        DrawRectangle(800, 400, 20, 20, BLACK);
-        DrawRectangle(800, 800, 20, 20, BLACK);
+        DrawRectangle(400, 400, 16, 16, BLACK);
+        DrawRectangle(400, 800, 16, 16, BLACK);
+        DrawRectangle(800, 400, 16, 16, BLACK);
+        DrawRectangle(800, 800, 16, 16, BLACK);
 
         player->Draw();
-        spell.Draw(); 
+        waterBullet.Draw(); 
 
         EndMode2D();
     }    

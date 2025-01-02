@@ -1,18 +1,19 @@
 // Isso não é a Classe Spell, e sim a Classe Basic Spell, mas por enquanto estará nomeado assim
-#include "../include/Spell.hpp"
-#include <cmath>
-#include "Spell.hpp"
+#include "../include/spells/WaterBullet.hpp"
 #include "Player.hpp"
 
-Spell::Spell() :
+#include <cmath>
+
+WaterBullet::WaterBullet() :
+    Spell(),
     summonerPosition( {0, 0} ),
     currentPosition( {0, 0} ),
     targetPosition( {0, 0} ),    
     range(300),
-    spellSpeed(100),
+    spellSpeed(300),
     active(false) {}
 
-void Spell::Cast() {
+void WaterBullet::Cast() {
 
     if (!active) {
 
@@ -28,7 +29,7 @@ void Spell::Cast() {
 
 }
 
-void Spell::Update(Vector2 spellSummonerPosition, Vector2 mousePosition) {
+void WaterBullet::Update(Vector2 spellSummonerPosition, Vector2 mousePosition) {
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         
@@ -62,8 +63,8 @@ void Spell::Update(Vector2 spellSummonerPosition, Vector2 mousePosition) {
 
 }
 
-void Spell::Draw() {
+void WaterBullet::Draw() {
 
-    if (active) DrawCircleV(currentPosition, 8, RED);
+    if (active) DrawCircleV(currentPosition, 8, BLUE);
 
 }

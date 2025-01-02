@@ -1,8 +1,8 @@
 #include "raylib.h"
-#include "../include/Screen.hpp"
-#include "../include/Game.hpp"
+#include "../include/roots/Screen.hpp"
+#include "../include/screens/Game.hpp"
 #include "../include/Player.hpp"
-#include "Screen.hpp"
+#include "roots/Screen.hpp"
 
 Screen::Screen() {
     screenType = SCREEN_MAIN;

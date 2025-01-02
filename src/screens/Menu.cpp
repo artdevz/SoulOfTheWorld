@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "Menu.hpp"
+#include "screens/Menu.hpp"
 
 Menu::Menu() {
     screenType = SCREEN_MAIN;

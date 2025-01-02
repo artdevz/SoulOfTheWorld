@@ -1,7 +1,8 @@
 #include "raylib.h"
-#include "../include/Menu.hpp"
-#include "../include/Select.hpp"
-#include "../include/Game.hpp"
+#include "../include/screens/Menu.hpp"
+#include "../include/screens/Select.hpp"
+#include "../include/screens/Game.hpp"
+
 #include <memory>
 
 int main() {    

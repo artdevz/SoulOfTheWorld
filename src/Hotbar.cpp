@@ -1,7 +1,7 @@
 #include "raylib.h"
 #include "../include/Hotbar.hpp"
+
 #include <string>
-#include "../include/Spell.hpp"
 
 Hotbar::Hotbar() {
     // spell = Spell();

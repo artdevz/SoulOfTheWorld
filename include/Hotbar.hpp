@@ -14,7 +14,7 @@
 #ifndef HOTBAR_HPP
 #define HOTBAR_HPP
 
-#include "Spell.hpp"
+#include "spells/WaterBullet.hpp"
 
 class Hotbar {
 
