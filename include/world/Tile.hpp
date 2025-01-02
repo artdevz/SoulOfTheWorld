@@ -8,7 +8,7 @@ class Tile {
     public:
 
         Tile();
-        Tile(Vector2, const char*);
+        Tile(Vector2, const Texture2D&);
 
         void Draw() const;
 

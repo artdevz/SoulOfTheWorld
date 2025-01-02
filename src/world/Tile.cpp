@@ -3,14 +3,13 @@
 
 Tile::Tile() {}
 
-Tile::Tile(Vector2 position, const char* texturePath) : 
-    position(position) {
-        texture = LoadTexture(texturePath);
-    }
+Tile::Tile(Vector2 position, const Texture2D& textureRef) : 
+    position(position),
+    texture(textureRef) {}
 
 void Tile::Draw() const {
 
-    DrawTexture(texture, position.x, position.y, WHITE);
+    DrawTexture(texture, (int)position.x, (int)position.y, WHITE);
 
 }
 

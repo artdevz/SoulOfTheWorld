@@ -26,10 +26,12 @@ void Game::SetPlayer(Player* p) {
 
 void Game::Init() {
 
-    const char* tileTexturePath = "assets/grass.png";
+    TraceLog(LOG_INFO, "Game iniciado");
 
+    Texture2D grassTexture = LoadTexture("assets/images/tiles/Grass.png");
+    
     for (int y = 0; y < 2000; y += 16) for (int x = 0; x < 2000; x += 16) {
-        tiles.push_back(Tile({(float)x, (float)y}, tileTexturePath));
+        tiles.push_back(Tile({(float)x, (float)y}, grassTexture));
     }
 
 }
@@ -58,7 +60,19 @@ void Game::Draw() {
 
         for (int y = -2000; y < 2000; y += 16) for (int x = -2000; x < 2000; x += 16) DrawRectangleLines(x, y, 16, 16, LIGHTGRAY);
         
-        for (const auto& tile : tiles) tile.Draw();
+        for (const auto& tile : tiles) {
+            
+            Vector2 tilePos = tile.GetPosition();
+            
+            if (CheckCollisionRecs( {tilePos.x, tilePos.y, 16, 16},
+            {   camera.GetCamera2D().target.x - camera.GetCamera2D().offset.x,
+                camera.GetCamera2D().target.y - camera.GetCamera2D().offset.y,
+                1280, 720 }
+            ) )
+
+            tile.Draw();
+
+        }
 
         player->Draw();
         waterBullet.Draw(); 

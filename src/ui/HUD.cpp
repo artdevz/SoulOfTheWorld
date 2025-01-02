@@ -14,6 +14,8 @@ void HUD::Draw() {
     DrawHP();
     DrawMP();
 
+    DrawFPS(10, 690);
+
 }
 
 void HUD::DrawIcon() {

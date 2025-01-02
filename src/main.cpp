@@ -26,6 +26,7 @@ int main() {
             if (!player) player = std::make_unique<Player>(Select::getSelectedElement());
             
             game->SetPlayer(player.get());
+            game->Init();
             screen = game;
 
         }
