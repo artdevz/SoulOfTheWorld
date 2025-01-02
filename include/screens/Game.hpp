@@ -8,26 +8,30 @@
 #include "ui/Inventory.hpp"
 #include "core/Player.hpp"
 #include "spells/WaterBullet.hpp"
+#include "world/Tile.hpp"
 
 class Game : public Screen {
 
-public:
+    public:
 
-    Game();
-    void SetPlayer(Player*);
-    void Init();
-    void Update();
-    void Draw();
+        Game();
+        
+        void SetPlayer(Player*);
+        void Init();
+        void Update();
+        void Draw();
 
-private:
+    private:
 
-    Cam camera;
-    Hotbar hotbar;
-    HUD hud;
-    Inventory inventory;
-    Player* player;
-    WaterBullet waterBullet;
-    
-};
+        Cam camera;
+        Hotbar hotbar;
+        HUD hud;
+        Inventory inventory;
+        Player* player;
+        WaterBullet waterBullet;
+        
+        std::vector<Tile> tiles;
+
+    };
 
 #endif

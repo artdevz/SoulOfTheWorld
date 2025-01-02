@@ -7,7 +7,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 # Subdiretórios para incluir
-SUBDIRS = $(SRC_DIR) $(SRC_DIR)/core $(SRC_DIR)/entities $(SRC_DIR)/resources $(SRC_DIR)/roots $(SRC_DIR)/screens $(SRC_DIR)/spells $(SRC_DIR)/ui 
+SUBDIRS = $(SRC_DIR) $(SRC_DIR)/core $(SRC_DIR)/entities $(SRC_DIR)/resources $(SRC_DIR)/roots $(SRC_DIR)/screens $(SRC_DIR)/spells $(SRC_DIR)/ui $(SRC_DIR)/world
 
 # Criação do diretório obj se não existir
 $(shell mkdir -p $(OBJ_DIR))

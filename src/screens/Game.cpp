@@ -7,6 +7,7 @@
 #include "../include/spells/WaterBullet.hpp"
 
 #include <string>
+#include <vector>
 
 Game::Game() :
     Screen(),
@@ -23,7 +24,15 @@ void Game::SetPlayer(Player* p) {
     player = p;
 }
 
-void Game::Init() {}
+void Game::Init() {
+
+    const char* tileTexturePath = "assets/grass.png";
+
+    for (int y = 0; y < 2000; y += 16) for (int x = 0; x < 2000; x += 16) {
+        tiles.push_back(Tile({(float)x, (float)y}, tileTexturePath));
+    }
+
+}
 
 void Game::Update() {
     
@@ -47,12 +56,9 @@ void Game::Draw() {
     if (player != nullptr) {
         BeginMode2D(camera.GetCamera2D());
 
-        for (int y = 0; y < 2000; y += 16) for (int x = 0; x < 2000; x += 16) DrawRectangleLines(x, y, 16, 16, LIGHTGRAY);
+        for (int y = -2000; y < 2000; y += 16) for (int x = -2000; x < 2000; x += 16) DrawRectangleLines(x, y, 16, 16, LIGHTGRAY);
         
-        DrawRectangle(400, 400, 16, 16, BLACK);
-        DrawRectangle(400, 800, 16, 16, BLACK);
-        DrawRectangle(800, 400, 16, 16, BLACK);
-        DrawRectangle(800, 800, 16, 16, BLACK);
+        for (const auto& tile : tiles) tile.Draw();
 
         player->Draw();
         waterBullet.Draw(); 
