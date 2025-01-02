@@ -1,4 +1,4 @@
-#include "../include/Cam.hpp"
+#include "../include/core/Cam.hpp"
 
 Cam::Cam(Vector2 target, Vector2 offset) {
 

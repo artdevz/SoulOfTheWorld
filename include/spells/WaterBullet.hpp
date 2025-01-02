@@ -2,7 +2,7 @@
 #define WATERBULLET_HPP
 
 #include "raylib.h"
-#include "Player.hpp"
+#include "core/Player.hpp"
 #include "roots/Spell.hpp"
 
 class WaterBullet : public Spell {

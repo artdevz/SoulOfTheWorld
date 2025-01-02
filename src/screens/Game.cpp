@@ -1,9 +1,9 @@
 #include "raylib.h"
 #include "../include/screens/Game.hpp"
-#include "../include/Element.hpp"
-#include "../include/Hotbar.hpp"
-#include "../include/HUD.hpp"
-#include "../include/Inventory.hpp"
+#include "../include/resources/Element.hpp"
+#include "../include/ui/Hotbar.hpp"
+#include "../include/ui/HUD.hpp"
+#include "../include/ui/Inventory.hpp"
 #include "../include/spells/WaterBullet.hpp"
 
 #include <string>
@@ -15,8 +15,7 @@ Game::Game() :
     hud(),
     inventory(),
     player(nullptr),
-    waterBullet(), 
-    ui() {
+    waterBullet() {
         screenType = SCREEN_GAME;
     }
 
@@ -24,9 +23,7 @@ void Game::SetPlayer(Player* p) {
     player = p;
 }
 
-void Game::Init() {
-    ui = UI();
-}
+void Game::Init() {}
 
 void Game::Update() {
     
@@ -39,8 +36,6 @@ void Game::Update() {
         waterBullet.Update(player->GetPosition(), GetScreenToWorld2D(GetMousePosition(), camera.GetCamera2D()));
 
     }    
-    
-    ui.Update();
 
 }
 
@@ -65,7 +60,6 @@ void Game::Draw() {
         EndMode2D();
     }    
 
-    ui.Draw();
     inventory.Draw();
     hotbar.Draw();
     hud.Draw();           

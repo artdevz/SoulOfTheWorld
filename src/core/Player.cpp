@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "../include/Player.hpp"
+#include "../include/core/Player.hpp"
 
 Player::Player() {
     position = {0, 0};

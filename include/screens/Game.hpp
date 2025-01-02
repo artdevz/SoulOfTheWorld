@@ -2,13 +2,12 @@
 #define GAME_HPP
 
 #include "roots/Screen.hpp"
-#include "Cam.hpp"
-#include "Hotbar.hpp"
-#include "HUD.hpp"
-#include "Inventory.hpp"
-#include "Player.hpp"
+#include "core/Cam.hpp"
+#include "ui/Hotbar.hpp"
+#include "ui/HUD.hpp"
+#include "ui/Inventory.hpp"
+#include "core/Player.hpp"
 #include "spells/WaterBullet.hpp"
-#include "UI.hpp"
 
 class Game : public Screen {
 
@@ -28,7 +27,6 @@ private:
     Inventory inventory;
     Player* player;
     WaterBullet waterBullet;
-    UI ui;
     
 };
 

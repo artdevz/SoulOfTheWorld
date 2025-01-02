@@ -1,7 +1,7 @@
 #ifndef SCREEN_HPP
 #define SCREEN_HPP
 
-#include "Player.hpp"
+#include "core/Player.hpp"
 
 enum ScreenType { SCREEN_MAIN, SCREEN_SELECT, SCREEN_GAME };
 

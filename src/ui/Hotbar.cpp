@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "../include/Hotbar.hpp"
+#include "../include/ui/Hotbar.hpp"
 
 #include <string>
 

@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "../include/HUD.hpp"
+#include "../include/ui/HUD.hpp"
 #include <string>
 
 HUD::HUD() {}
