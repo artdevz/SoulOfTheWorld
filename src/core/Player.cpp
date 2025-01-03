@@ -32,17 +32,11 @@ void Player::Update(const std::vector<Tile>& tiles) {
     for (const auto& tile : tiles) {
 
         Rectangle tileRect = { tile.GetPosition().x, tile.GetPosition().y, (float)tile.GetSize(), (float)tile.GetSize() };
-
-        if (
-            (CheckCollisionPointRec(nextPos, tileRect) && tile.GetHeight()) ||    // Centro
-            (CheckCollisionPointRec({ nextPos.x+16, nextPos.y }, tileRect) && tile.GetHeight()) ||    // Esquerda
-            (CheckCollisionPointRec({ nextPos.x-16, nextPos.y }, tileRect) && tile.GetHeight()) ||    // Direita
-            (CheckCollisionPointRec({ nextPos.x, nextPos.y-16 }, tileRect) && tile.GetHeight()) ||    // Cima
-            (CheckCollisionPointRec({ nextPos.x, nextPos.y+16 }, tileRect) && tile.GetHeight())       // Baixo
-            ) {
-            canMove = false; break;
+        
+        if ((CheckCollisionCircleRec( nextPos, 16, tileRect) && tile.GetHeight())) {
+            canMove = false; break;        
         }
-
+        
     }
 
     if (canMove) position = nextPos;
