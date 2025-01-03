@@ -32,11 +32,11 @@ void Game::Init() {
     Texture2D grassTexture = LoadTexture("assets/images/tiles/Grass.png");
     Texture2D wall = LoadTexture("");
 
-    for (int y = 0; y < 2000; y += 16) for (int x = 0; x < 2000; x += 16) {
-        if (x == 512) {
-            tiles.push_back(Tile({(float)x, (float)y}, 1, wall));
-            continue;
-        }
+    for (int y = 0; y < 4096; y += 32) for (int x = 0; x < 4096; x += 32) { // 4096 (Scenario) 36864 (Region) 2985984 (World) 107,49 km²
+        // if (x == 512) {
+        //     tiles.push_back(Tile({(float)x, (float)y}, 1, wall));
+        //     continue;
+        // }
         tiles.push_back(Tile({(float)x, (float)y}, 0, grassTexture));
     }
 
@@ -64,19 +64,16 @@ void Game::Draw() {
     if (player != nullptr) {
         BeginMode2D(camera.GetCamera2D());
 
-        for (int y = -2000; y < 2000; y += 16) for (int x = -2000; x < 2000; x += 16) DrawRectangleLines(x, y, 16, 16, LIGHTGRAY);
-        
         for (const auto& tile : tiles) {
             
             Vector2 tilePos = tile.GetPosition();
             
-            if (CheckCollisionRecs( {tilePos.x, tilePos.y, 16, 16},
-            {   camera.GetCamera2D().target.x - camera.GetCamera2D().offset.x,
-                camera.GetCamera2D().target.y - camera.GetCamera2D().offset.y,
-                Window::resolution.x, Window::resolution.y }
-            ) )
-
-            tile.Draw();
+            if (CheckCollisionRecs( {tilePos.x, tilePos.y, 32, 32},
+                {   camera.GetCamera2D().target.x - camera.GetCamera2D().offset.x,
+                    camera.GetCamera2D().target.y - camera.GetCamera2D().offset.y,
+                    Window::resolution.x, Window::resolution.y }
+                ) )
+                tile.Draw();
 
         }
 
