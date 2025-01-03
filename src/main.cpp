@@ -2,17 +2,16 @@
 #include "../include/screens/Menu.hpp"
 #include "../include/screens/Select.hpp"
 #include "../include/screens/Game.hpp"
+#include "../include/ui/Window.hpp"
 
 #include <memory>
 
 int main() {    
-    InitWindow(1280, 720, "Soul of The World");
+    Window(Window(1920, 1080, 60, "Soul of The World"));
 
     std::shared_ptr<Screen> screen = std::make_unique<Menu>();
     std::unique_ptr<Player> player = nullptr;
-    std::shared_ptr<Game> game = nullptr;
-        
-    SetTargetFPS(60);    
+    std::shared_ptr<Game> game = nullptr;  
 
     while (!WindowShouldClose()) { 
         
@@ -47,7 +46,6 @@ int main() {
         }
 
     }   
-    
-    CloseWindow();
+
     return 0;
 }

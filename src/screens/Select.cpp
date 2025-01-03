@@ -1,7 +1,8 @@
 #include "raylib.h"
 #include "screens/Select.hpp"
+#include "ui/Window.hpp"
 
-Element Select::selectedElement = WATER;
+Element Select::selectedElement = NONE;
 
 Select::Select() {
     screenType = SCREEN_SELECT;
@@ -22,98 +23,60 @@ void Select::Update() {}
 
 void Select::Draw() {
 
+    int width = Window::resolution.x, height = Window::resolution.y;
+    
+    float framePosY = height / 3.6f;
+    float buttonPosY = height / 1.44f;
+
+    float frameWidth = width / 6.4f;
+    float frameHeight = height / 2.4f;
+
+    float buttonWidth = frameWidth;
+    float buttonHeight = height / 14.4f;
+
     BeginDrawing();
     ClearBackground(Color{ 0x14, 0x16, 0x20, 255});
 
     // Title/Logo
-    DrawText("Soul of the World", 360, 30, 64, Color{ 0xE0, 0xA5, 0x26, 255}); // E0A526
+    DrawText("Soul of the World", (int)(width / 2 - MeasureText("Soul of the World", width/20) / 2) , (int)height / 24, width/20, Color{ 0xE0, 0xA5, 0x26, 255});
+    
+    // Fire
+    DrawRectangleRec( { width/10.66f, framePosY, frameWidth, frameHeight }, BLACK);
+    DrawRectangleRec( { width/10.66f, buttonPosY, buttonWidth, buttonHeight } , ORANGE);
+    // DrawText("Fire - 15%", width/10.66f + frameWidth/32.0f + MeasureText("Fire - 15%", width / 53.3f) / 3.5, buttonPosY / 0.97f, (int)width / 53.3f, WHITE );
 
-    float widthFrame = 200;
-    float heightFrame = 300;
-    float heightButton = 50;
+    // WATER
+    DrawRectangleRec( { width/3.2f, framePosY, frameWidth, frameHeight }, BLACK);
+    DrawRectangleRec( { width/3.2f, buttonPosY, buttonWidth, buttonHeight } , BLUE);
+    // DrawText("Water - 99%", width/3.2f + width/32.0f + MeasureText("Water - 99%", width / 53.3f) / 3.5, buttonPosY / 0.97f, (int)(width / 53.3f), WHITE );
 
-    float posYframes = 200;
-    float posYbuttons = 500;
+    // EARTH
+    DrawRectangleRec( { width/1.88f, framePosY, frameWidth, frameHeight }, BLACK);
+    DrawRectangleRec( { width/1.88f, buttonPosY, buttonWidth, buttonHeight } , RED);
+    // DrawText("Earth - 5%", width/1.88f + width/32.0f + MeasureText("Earth - 5%", width / 53.3f) / 3.5, buttonPosY / 0.97f, (int)width / 53.3f, WHITE );
 
-    float posXfireButton = 120;
-    float posXwaterButton = 400;
-    float posXearthButton = 680;
-    float posXairButton = 960;
+    // AIR
+    DrawRectangleRec( { width/1.33f, framePosY, frameWidth, frameHeight }, BLACK);
+    DrawRectangleRec( { width/1.33f, buttonPosY, buttonWidth, buttonHeight } , GREEN);
+    // DrawText("Air - 75%", width/1.33f + width/32.0f + MeasureText("Air - 75%", width / 53.3f) / 3.5, buttonPosY / 0.97f, (int)width / 53.3f, WHITE );
 
-    float posYname = 515;
+    // BACK
+    DrawRectangleRec( { width/2.25f, height/1.16f, width/9.14f, height/12.0f } , DARKPURPLE);
+    DrawText("Back to Menu", width/2.20f, height/1.13f, width/71.f, WHITE);
+    
+    // BUTTONS
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {   
 
-    float posXnameChange = 40;
-
-    int nameFont = 24;
-
-    Rectangle frameF = {posXfireButton, posYframes, widthFrame, heightFrame};
-    Rectangle frameW = {posXwaterButton, posYframes, widthFrame, heightFrame};
-    Rectangle frameE = {posXearthButton, posYframes, widthFrame, heightFrame};
-    Rectangle frameA = {posXairButton, posYframes, widthFrame, heightFrame};
-
-    DrawRectangleRec(frameF, BLACK);
-    DrawRectangleRec(frameW, BLACK);
-    DrawRectangleRec(frameE, BLACK);
-    DrawRectangleRec(frameA, BLACK);
-
-    // Fire Button
-    Rectangle buttonFire = {posXfireButton, posYbuttons, widthFrame, heightButton};
-    DrawRectangleRec(buttonFire, ORANGE);
-    DrawText("Fire - 15%", posXfireButton+posXnameChange , posYname, nameFont, WHITE);
-
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), buttonFire)) {
-        Select::selectedElement = FIRE;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/10.66f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = FIRE; 
+        if (CheckCollisionPointRec(GetMousePosition(), { width/3.2f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = WATER;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/1.88f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = EARTH;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/1.33f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = AIR;
         
-        screenType = SCREEN_GAME;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/2.25f, height/1.16f, width/9.14f, height/12.0f } )) screenType = SCREEN_MAIN;
+        if (selectedElement != NONE) screenType = SCREEN_GAME;
+
     }
-
-
-    // Water Button
-    Rectangle buttonWater = {posXwaterButton, posYbuttons, widthFrame, heightButton};
-    DrawRectangleRec(buttonWater, BLUE);
-    DrawText("Water - 40%", posXwaterButton+posXnameChange, posYname, nameFont, WHITE);
-
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), buttonWater)) {
-        Select::selectedElement = WATER;
-        
-        screenType = SCREEN_GAME;
-    }
-
-
-    // Earth Button
-    Rectangle buttonEarth = {posXearthButton, posYbuttons, widthFrame, heightButton};
-    DrawRectangleRec(buttonEarth, RED);
-    DrawText("Earth - 5%", posXearthButton+posXnameChange, posYname, nameFont, WHITE);
-
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), buttonEarth)) {
-        Select::selectedElement = EARTH;
-        
-        screenType = SCREEN_GAME;
-    }
-
-
-    // Air Button
-    Rectangle buttonAir = {posXairButton, posYbuttons, widthFrame, heightButton};
-    DrawRectangleRec({posXairButton, posYbuttons, widthFrame, heightButton}, GREEN);
-    DrawText("Air - 75%", posXairButton+posXnameChange, posYname, nameFont, WHITE);
-
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), buttonAir)) {
-        Select::selectedElement = AIR;
-        
-        screenType = SCREEN_GAME;
-    }
-
-
-    // Back Button
-    Rectangle buttonBack = {570, 620, 140, 60};
-    DrawRectangleRec(buttonBack, DARKPURPLE);
-    DrawText("Back to Menu", 582, 640, 18, WHITE);
-
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), buttonBack)) {
-        
-        screenType = SCREEN_MAIN;
-    }
-
+    
     EndDrawing();
 
 }
