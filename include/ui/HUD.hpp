@@ -12,9 +12,9 @@ public:
 
 private:
 
-    void DrawIcon();
-    void DrawHP();
-    void DrawMP();
+    void DrawIcon(float, float);
+    void DrawHP(float, float);
+    void DrawMP(float, float);
 
 };
 
