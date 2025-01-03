@@ -5,13 +5,14 @@
 #include "../include/ui/HUD.hpp"
 #include "../include/ui/Inventory.hpp"
 #include "../include/spells/WaterBullet.hpp"
+#include "../include/ui/Window.hpp"
 
 #include <string>
 #include <vector>
 
 Game::Game() :
     Screen(),
-    camera({640, 360}, {1280 / 2, 720 / 2}),    
+    camera({Window::resolution.x / 2, Window::resolution.y / 2}, {Window::resolution.x / 2, Window::resolution.y / 2}),    
     hotbar(),
     hud(),
     inventory(),
