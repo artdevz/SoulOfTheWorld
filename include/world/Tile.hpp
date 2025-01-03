@@ -6,17 +6,20 @@
 class Tile {
 
     public:
-
+        
         Tile();
-        Tile(Vector2, const Texture2D&);
+        Tile(Vector2, bool, const Texture2D&);
 
         void Draw() const;
 
         Vector2 GetPosition() const;
+        bool GetHeight() const;
+        int GetSize() const;
 
     private:
 
         Vector2 position;
+        bool height;
         Texture2D texture;
         static const int SIZE = 16;
 

@@ -3,6 +3,9 @@
 
 #include "raylib.h"
 #include "resources/Element.hpp"
+#include "../world/Tile.hpp"
+
+#include <vector>
 
 class Player {
 
@@ -12,7 +15,7 @@ public:
 
     Player(Element element);
 
-    void Update();
+    void Update(const std::vector<Tile> &tiles);
 
     void Draw();
 

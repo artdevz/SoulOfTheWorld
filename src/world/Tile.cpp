@@ -3,8 +3,9 @@
 
 Tile::Tile() {}
 
-Tile::Tile(Vector2 position, const Texture2D& textureRef) : 
+Tile::Tile(Vector2 position, bool height, const Texture2D& textureRef) : 
     position(position),
+    height(height),
     texture(textureRef) {}
 
 void Tile::Draw() const {
@@ -15,4 +16,12 @@ void Tile::Draw() const {
 
 Vector2 Tile::GetPosition() const {
     return position;
+}
+
+bool Tile::GetHeight() const {
+    return height;
+}
+
+int Tile::GetSize() const {
+    return SIZE;
 }

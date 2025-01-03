@@ -29,9 +29,14 @@ void Game::Init() {
     TraceLog(LOG_INFO, "Game iniciado");
 
     Texture2D grassTexture = LoadTexture("assets/images/tiles/Grass.png");
-    
+    Texture2D wall = LoadTexture("");
+
     for (int y = 0; y < 2000; y += 16) for (int x = 0; x < 2000; x += 16) {
-        tiles.push_back(Tile({(float)x, (float)y}, grassTexture));
+        if (x == 512) {
+            tiles.push_back(Tile({(float)x, (float)y}, 1, wall));
+            continue;
+        }
+        tiles.push_back(Tile({(float)x, (float)y}, 0, grassTexture));
     }
 
 }
@@ -40,7 +45,7 @@ void Game::Update() {
     
     if (player != nullptr) {
         
-        player->Update();
+        player->Update(tiles);
         camera.Update(player->GetPosition());
         hotbar.Update();
         inventory.Update();
