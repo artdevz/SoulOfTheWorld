@@ -1,11 +1,11 @@
 #include "raylib.h"
-#include "../include/screens/Game.hpp"
-#include "../include/resources/Element.hpp"
-#include "../include/ui/Hotbar.hpp"
-#include "../include/ui/HUD.hpp"
-#include "../include/ui/Inventory.hpp"
-#include "../include/spells/WaterBullet.hpp"
-#include "../include/ui/Window.hpp"
+#include "screens/Game.hpp"
+#include "resources/Element.hpp"
+#include "ui/Hotbar.hpp"
+#include "ui/HUD.hpp"
+#include "ui/Inventory.hpp"
+#include "spells/WaterBullet.hpp"
+#include "ui/Window.hpp"
 
 #include <string>
 #include <vector>
@@ -73,7 +73,7 @@ void Game::Draw() {
             if (CheckCollisionRecs( {tilePos.x, tilePos.y, 16, 16},
             {   camera.GetCamera2D().target.x - camera.GetCamera2D().offset.x,
                 camera.GetCamera2D().target.y - camera.GetCamera2D().offset.y,
-                1280, 720 }
+                Window::resolution.x, Window::resolution.y }
             ) )
 
             tile.Draw();
