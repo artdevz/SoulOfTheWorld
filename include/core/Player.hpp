@@ -3,7 +3,7 @@
 
 #include "raylib.h"
 #include "resources/Element.hpp"
-#include "../world/Tile.hpp"
+#include "world/Tile.hpp"
 
 #include <vector>
 

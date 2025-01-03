@@ -1,4 +1,4 @@
-#include "../include/roots/Spell.hpp"
+#include "roots/Spell.hpp"
 
 Spell::Spell() {}
 

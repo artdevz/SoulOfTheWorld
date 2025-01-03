@@ -1,5 +1,5 @@
 // Isso não é a Classe Spell, e sim a Classe Basic Spell, mas por enquanto estará nomeado assim
-#include "../include/spells/WaterBullet.hpp"
+#include "spells/WaterBullet.hpp"
 #include "core/Player.hpp"
 
 #include <cmath>

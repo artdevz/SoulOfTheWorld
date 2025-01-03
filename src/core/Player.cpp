@@ -1,6 +1,6 @@
 #include "raylib.h"
-#include "../include/core/Player.hpp"
-#include "../include/world/Tile.hpp"
+#include "core/Player.hpp"
+#include "world/Tile.hpp"
 
 #include <vector>
 

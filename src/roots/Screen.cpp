@@ -1,7 +1,7 @@
 #include "raylib.h"
-#include "../include/roots/Screen.hpp"
-#include "../include/screens/Game.hpp"
-#include "../include/core/Player.hpp"
+#include "roots/Screen.hpp"
+#include "screens/Game.hpp"
+#include "core/Player.hpp"
 #include "roots/Screen.hpp"
 
 Screen::Screen() {

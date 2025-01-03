@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "../include/world/Tile.hpp"
+#include "world/Tile.hpp"
 
 Tile::Tile() {}
 

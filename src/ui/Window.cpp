@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "../include/ui/Window.hpp"
+#include "ui/Window.hpp"
 
 Vector2 Window::resolution = {0, 0};
 

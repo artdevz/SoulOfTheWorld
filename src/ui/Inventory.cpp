@@ -1,4 +1,4 @@
-#include "../include/ui/Inventory.hpp"
+#include "ui/Inventory.hpp"
 #include "raylib.h"
 
 bool Inventory::inventoryState = false;
