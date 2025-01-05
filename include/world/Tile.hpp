@@ -21,7 +21,7 @@ class Tile {
         Vector2 position;
         bool height;
         Texture2D texture;
-        static const int SIZE = 16;
+        static const int SIZE = 32;
 
 };
 

@@ -9,7 +9,7 @@
 int main() {    
     Window(Window(1920, 1080, 60, "Soul of The World"));
 
-    std::shared_ptr<Screen> screen = std::make_unique<Menu>();
+    std::shared_ptr<Screen> screen = std::make_shared<Menu>();
     std::unique_ptr<Player> player = nullptr;
     std::shared_ptr<Game> game = nullptr;  
 
@@ -17,18 +17,6 @@ int main() {
         
         screen->Update();
         screen->Draw();
-        
-        if (screen->screenType == SCREEN_GAME && !game) {
-
-            game = std::make_shared<Game>();
-
-            if (!player) player = std::make_unique<Player>(Select::getSelectedElement());
-            
-            game->SetPlayer(player.get());
-            game->Init();
-            screen = game;
-
-        }
 
         switch (screen->screenType) {
 
@@ -41,6 +29,19 @@ int main() {
                 break;
 
             case SCREEN_GAME:
+
+                if (!game) {
+                
+                    game = std::make_shared<Game>();
+
+                    if (!player) player = std::make_unique<Player>(Select::getSelectedElement());
+
+                    game->SetPlayer(player.get());
+                    game->Init();
+
+                }
+
+                screen = game;
                 break;
         
         }
