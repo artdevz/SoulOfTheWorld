@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Iinclude -Ilib/raylib/include
+CXXFLAGS = -std=c++17 -Wall -Iinclude
 LIBS = -lraylib -lm -lpthread -ldl -lX11
 
 # Dir
