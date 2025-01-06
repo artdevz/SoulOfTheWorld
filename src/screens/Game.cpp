@@ -30,27 +30,9 @@ void Game::Init() {
     TraceLog(LOG_INFO, "Game iniciado");
 
     Texture2D grassTexture = LoadTexture("assets/images/tiles/Grass.png");
-    Texture2D grassPathTexture = LoadTexture("assets/images/tiles/GrassPath.png");
+    // Texture2D grassPathTexture = LoadTexture("assets/images/tiles/GrassPath.png");
 
-    for (int y = 0; y < 4096; y += 32) for (int x = 0; x < 4096; x += 32) { // 4096 (Scenario) 36864 (Region) 2985984 (World) 107,49 km²
-
-        if (x == 512 || x == 608 || x == 672) {
-
-            tiles.push_back(Tile({(float)x, (float)y}, 0, grassPathTexture));
-            continue;
-            
-        }
-
-        if (x == 544) {
-
-            Image image = LoadImage("assets/images/tiles/GrassPath.png");
-            ImageRotateCW(&image);
-            ImageRotateCW(&image);
-            Texture2D texture = LoadTextureFromImage(image);
-            tiles.push_back(Tile({(float)x, (float)y}, 0, texture));            
-            continue;
-
-        }
+    for (int y = 0; y < 1024; y += 32) for (int x = 0; x < 1024; x += 32) {
 
         tiles.push_back(Tile({(float)x, (float)y}, 0, grassTexture));
 
@@ -60,7 +42,7 @@ void Game::Init() {
 
 void Game::Update() {
     
-    if (player != nullptr) {
+    if (player) {
         
         player->Update(tiles);
         camera.Update(player->GetPosition());
@@ -77,7 +59,7 @@ void Game::Draw() {
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
-    if (player != nullptr) {
+    if (player) {
         BeginMode2D(camera.GetCamera2D());
 
         for (const auto& tile : tiles) {

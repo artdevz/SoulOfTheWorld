@@ -1,0 +1,1 @@
+// 32x32 Chunks -> 32x32 Zones = World (1073km²) = 1 MB
