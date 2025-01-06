@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Iinclude
+CXXFLAGS = -std=c++17 -Wall -Iinclude -Ilib/raylib/include
 LIBS = -lraylib -lm -lpthread -ldl -lX11
 
 # Dir
@@ -8,7 +8,7 @@ OBJ_DIR = obj
 BIN_DIR = bin
 
 # Sub-Dir
-SUBDIRS = $(SRC_DIR) $(SRC_DIR)/core $(SRC_DIR)/entities $(SRC_DIR)/resources $(SRC_DIR)/roots $(SRC_DIR)/screens $(SRC_DIR)/spells $(SRC_DIR)/ui $(SRC_DIR)/world
+SUBDIRS = $(shell find $(SRC_DIR) -type d)
 
 # Create
 $(shell mkdir -p $(OBJ_DIR) $(BIN_DIR))
