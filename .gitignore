@@ -11,7 +11,6 @@
 /build/
 bin/
 obj/
-main
 
 # IDE Configs
 .vscode/
@@ -28,6 +27,7 @@ main
 *.cache
 *.lock
 *.bak
+*.d
 
 # Specific System Files
 .DS_Store
