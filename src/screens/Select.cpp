@@ -5,12 +5,14 @@
 Element Select::selectedElement = NONE;
 
 Select::Select() {
-    screenType = SCREEN_SELECT;
+    screenType = SCREEN_SELECT_MENU;
+    TraceLog(LOG_INFO, "Criado o Select"); 
 }
 
 Select::Select(Element element) {
-    screenType = SCREEN_SELECT;
-    selectedElement = element;    
+    screenType = SCREEN_SELECT_MENU;
+    selectedElement = element;  
+    TraceLog(LOG_INFO, "Criado o Select com Element");   
 }
 
 Element Select::getSelectedElement() {
@@ -19,7 +21,9 @@ Element Select::getSelectedElement() {
 
 void Select::Init() {}
 
-void Select::Update() {}
+void Select::Update() {
+    Draw();
+}
 
 void Select::Draw() {
 
@@ -72,7 +76,7 @@ void Select::Draw() {
         if (CheckCollisionPointRec(GetMousePosition(), { width/1.88f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = EARTH;
         if (CheckCollisionPointRec(GetMousePosition(), { width/1.33f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = AIR;
         
-        if (CheckCollisionPointRec(GetMousePosition(), { width/2.25f, height/1.16f, width/9.14f, height/12.0f } )) screenType = SCREEN_MAIN;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/2.25f, height/1.16f, width/9.14f, height/12.0f } )) screenType = SCREEN_MAIN_MENU;
         if (selectedElement != NONE) screenType = SCREEN_GAME;
 
     }

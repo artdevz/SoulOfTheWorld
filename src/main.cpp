@@ -9,23 +9,26 @@
 int main() {    
     Window(1366, 768, 60, "Soul of The World");
 
-    std::shared_ptr<Screen> screen = std::make_shared<Menu>();
+    std::vector<std::shared_ptr<Screen>> screens = { 
+        std::make_shared<Menu>(), 
+        std::make_shared<Select>(),
+        std::make_shared<Game>()
+        };
+
+    std::shared_ptr<Screen> screen = screens[0];
     std::unique_ptr<Player> player = nullptr;
     std::shared_ptr<Game> game = nullptr;  
-    // Array para Screens
+
     while (!WindowShouldClose()) { 
-        
-        screen->Update();
-        screen->Draw();
 
         switch (screen->screenType) {
-
-            case SCREEN_MAIN:
-                screen = std::make_unique<Menu>(); 
+            
+            case SCREEN_MAIN_MENU:                
+                screen = screens[0];                               
                 break;
             
-            case SCREEN_SELECT: 
-                screen = std::make_unique<Select>();
+            case SCREEN_SELECT_MENU:
+                screen = screens[1];                
                 break;
 
             case SCREEN_GAME:
@@ -45,6 +48,8 @@ int main() {
                 break;
         
         }
+
+        screen->Update();
 
     }   
 

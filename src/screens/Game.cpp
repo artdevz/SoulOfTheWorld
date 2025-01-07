@@ -50,7 +50,9 @@ void Game::Update() {
         inventory.Update();
         waterBullet.Update(player->GetPosition(), GetScreenToWorld2D(GetMousePosition(), camera.GetCamera2D()));
 
-    }    
+    }
+
+    Draw();    
 
 }
 

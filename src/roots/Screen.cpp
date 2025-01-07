@@ -5,7 +5,7 @@
 #include "roots/Screen.hpp"
 
 Screen::Screen() {
-    screenType = SCREEN_MAIN;
+    screenType = SCREEN_MAIN_MENU;
 }
 
 // Screen::~Screen() {}
