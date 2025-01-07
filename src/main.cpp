@@ -7,12 +7,12 @@
 #include <memory>
 
 int main() {    
-    Window(Window(1920, 1080, 60, "Soul of The World"));
+    Window(1366, 768, 60, "Soul of The World");
 
     std::shared_ptr<Screen> screen = std::make_shared<Menu>();
     std::unique_ptr<Player> player = nullptr;
     std::shared_ptr<Game> game = nullptr;  
-
+    // Array para Screens
     while (!WindowShouldClose()) { 
         
         screen->Update();
@@ -20,7 +20,7 @@ int main() {
 
         switch (screen->screenType) {
 
-            case SCREEN_MAIN: 
+            case SCREEN_MAIN:
                 screen = std::make_unique<Menu>(); 
                 break;
             
