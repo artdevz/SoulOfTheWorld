@@ -7,7 +7,7 @@
 Player::Player() {
     position = {0, 0};
     moveSpeed = 100.0f;
-    element = WATER;    
+    element = E_NONE;    
 }
 
 Player::Player(Element element) {
@@ -48,19 +48,19 @@ void Player::Draw() {
     DrawText(coords, 200, 200, 24, BLACK);
     switch (this->element) {
         
-        case FIRE:
+        case E_FIRE:
             DrawCircleV(position, 16, ORANGE);                       
             break;
 
-        case WATER:
+        case E_WATER:
             DrawCircleV(position, 16, BLUE);            
             break;
 
-        case EARTH:
+        case E_EARTH:
             DrawCircleV(position, 16, RED);
             break;
 
-        case AIR:
+        case E_AIR:
             DrawCircleV(position, 16, GREEN);
             break;
     

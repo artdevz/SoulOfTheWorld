@@ -3,7 +3,7 @@
 
 #include "core/Player.hpp"
 
-enum ScreenType { SCREEN_MAIN_MENU, SCREEN_SELECT_MENU, SCREEN_OPTIONS, SCREEN_GAME }; // Trocar para SCR_x
+enum ScreenType { SCR_MAIN, SCR_SELECT, SCR_OPTIONS, SCR_GAME };
 
 class Screen {
 

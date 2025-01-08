@@ -13,7 +13,7 @@ public:
 
     Player();
 
-    Player(Element element);
+    Player(Element);
 
     void Update(const std::vector<Tile> &tiles);
 

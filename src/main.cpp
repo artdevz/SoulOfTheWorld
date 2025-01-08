@@ -27,19 +27,19 @@ int main() {
 
         switch (screen->screenType) {
             
-            case SCREEN_MAIN_MENU:                
+            case SCR_MAIN:                
                 screen = screens[0];                               
                 break;
             
-            case SCREEN_SELECT_MENU:
+            case SCR_SELECT:
                 screen = screens[1];                
                 break;
 
-            case SCREEN_OPTIONS:
+            case SCR_OPTIONS:
                 screen = screens[2];
                 break;
 
-            case SCREEN_GAME:
+            case SCR_GAME:
 
                 if (!game) {
                 

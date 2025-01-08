@@ -3,7 +3,7 @@
 #include "ui/Window.hpp"
 
 Menu::Menu() {
-    screenType = SCREEN_MAIN_MENU;
+    screenType = SCR_MAIN;
     TraceLog(LOG_INFO, "Criado o Menu");    
 }
 
@@ -35,9 +35,9 @@ void Menu::Draw() {
     DrawRectangleRec( { width/2.67f, height/1.38f, width/4.0f, height/9.0f } , Color{ 0x86, 0x02, 0x02, 255 });
     DrawText("Exit", (int)(width / 2 - MeasureText("Exit", width/53.33) / 2), height / 1.31f, width/53.33, WHITE);
 
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/2.67f, height/2.57f, width/4.0f, height/9.0f } )) screenType = SCREEN_SELECT_MENU;
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/2.67f, height/2.57f, width/4.0f, height/9.0f } )) screenType = SCR_SELECT;
     
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/2.67f, height/1.8f, width/4.0f, height/9.0f } )) screenType = SCREEN_OPTIONS;
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/2.67f, height/1.8f, width/4.0f, height/9.0f } )) screenType = SCR_OPTIONS;
     
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), {width/2.67f, height/1.38f, width/4.0f, height/9.0f} )) CloseWindow();
 

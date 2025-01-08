@@ -2,15 +2,15 @@
 #include "screens/Select.hpp"
 #include "ui/Window.hpp"
 
-Element Select::selectedElement = NONE;
+Element Select::selectedElement = E_NONE;
 
 Select::Select() {
-    screenType = SCREEN_SELECT_MENU;
+    screenType = SCR_SELECT;
     TraceLog(LOG_INFO, "Criado o Select"); 
 }
 
 Select::Select(Element element) {
-    screenType = SCREEN_SELECT_MENU;
+    screenType = SCR_SELECT;
     selectedElement = element;  
     TraceLog(LOG_INFO, "Criado o Select com Element");   
 }
@@ -71,13 +71,13 @@ void Select::Draw() {
     // BUTTONS
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {   
 
-        if (CheckCollisionPointRec(GetMousePosition(), { width/10.66f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = FIRE; 
-        if (CheckCollisionPointRec(GetMousePosition(), { width/3.2f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = WATER;
-        if (CheckCollisionPointRec(GetMousePosition(), { width/1.88f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = EARTH;
-        if (CheckCollisionPointRec(GetMousePosition(), { width/1.33f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = AIR;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/10.66f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = E_FIRE; 
+        if (CheckCollisionPointRec(GetMousePosition(), { width/3.2f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = E_WATER;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/1.88f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = E_EARTH;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/1.33f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = E_AIR;
         
-        if (CheckCollisionPointRec(GetMousePosition(), { width/2.25f, height/1.16f, width/9.14f, height/12.0f } )) screenType = SCREEN_MAIN_MENU;
-        if (selectedElement != NONE) screenType = SCREEN_GAME;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/2.25f, height/1.16f, width/9.14f, height/12.0f } )) screenType = SCR_MAIN;
+        if (selectedElement != E_NONE) screenType = SCR_GAME;
 
     }
     

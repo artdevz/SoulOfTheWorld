@@ -3,7 +3,7 @@
 #include "ui/Window.hpp"
 
 Options::Options() {
-    screenType = SCREEN_OPTIONS;
+    screenType = SCR_OPTIONS;
     settingsType = OPT_NONE;
     TraceLog(LOG_INFO, "Criado a Options");
 }
@@ -34,7 +34,7 @@ void Options::Draw() {
 
     switch (settingsType) {
 
-        case NONE: break;
+        case OPT_NONE: break;
 
         case OPT_VIDEO: DrawVideo(width, height); break;
         case OPT_AUDIO: DrawAudio(width, height); break;

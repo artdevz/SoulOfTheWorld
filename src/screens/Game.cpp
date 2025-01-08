@@ -18,7 +18,7 @@ Game::Game() :
     inventory(),
     player(nullptr),
     waterBullet() {
-        screenType = SCREEN_GAME;
+        screenType = SCR_GAME;
     }
 
 void Game::SetPlayer(Player* p) {
