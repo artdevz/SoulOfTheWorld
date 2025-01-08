@@ -37,7 +37,8 @@ void Menu::Draw() {
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/2.67f, height/2.57f, width/4.0f, height/9.0f } )) screenType = SCREEN_SELECT_MENU;
     
-    // if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/2.67f, height/1.8f, width/4.0f, height/9.0f } )) // Unimpl
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/2.67f, height/1.8f, width/4.0f, height/9.0f } )) screenType = SCREEN_OPTIONS;
+    
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), {width/2.67f, height/1.38f, width/4.0f, height/9.0f} )) CloseWindow();
 
     EndDrawing();

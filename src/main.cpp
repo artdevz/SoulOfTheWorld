@@ -2,6 +2,7 @@
 #include "core/Settings.hpp"
 #include "screens/Menu.hpp"
 #include "screens/Select.hpp"
+#include "screens/Options.hpp"
 #include "screens/Game.hpp"
 #include "ui/Window.hpp"
 
@@ -14,6 +15,7 @@ int main() {
     std::vector<std::shared_ptr<Screen>> screens = { 
         std::make_shared<Menu>(), 
         std::make_shared<Select>(),
+        std::make_shared<Options>(),
         std::make_shared<Game>()
         };
 
@@ -31,6 +33,10 @@ int main() {
             
             case SCREEN_SELECT_MENU:
                 screen = screens[1];                
+                break;
+
+            case SCREEN_OPTIONS:
+                screen = screens[2];
                 break;
 
             case SCREEN_GAME:
