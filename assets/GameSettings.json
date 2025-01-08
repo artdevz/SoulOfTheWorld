@@ -1,0 +1,50 @@
+{
+
+    "audio": { 
+
+        "master": 100,
+        "music": 100,
+        "effects": 100,
+        "mute": false
+
+    },
+
+    "controls": {
+
+        "keyBindings": {
+
+            "moveUp": "W",
+            "moveDown": "S",
+            "moveLeft": "A",
+            "moveRight": "D",
+
+            "SkillOne": "1",
+            "SkillTwo": "2",
+            "SkillThree": "3",
+            "Ultimate": "4",
+
+            "BasicAttack": "LEFT_MOUSE_BUTTON"
+
+        },
+
+        "mouseSensitivity": 1.0
+
+    },
+
+    "gameplay": {
+
+        "language": "en"
+
+    },
+
+    "video": {
+        
+        "width": 1366,
+        "height": 768,
+        "windodew": false,
+
+        "fpsCap": 500
+
+    }
+
+}

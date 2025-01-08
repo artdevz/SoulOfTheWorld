@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "core/Settings.hpp"
 #include "screens/Menu.hpp"
 #include "screens/Select.hpp"
 #include "screens/Game.hpp"
@@ -6,8 +7,9 @@
 
 #include <memory>
 
-int main() {    
-    Window(1366, 768, 60, "Soul of The World");
+int main() {
+    Settings::LoadSettings();
+    Window(Settings::GetWidth(), Settings::GetHeight(), Settings::GetFpsCap(), "Soul of The World");
 
     std::vector<std::shared_ptr<Screen>> screens = { 
         std::make_shared<Menu>(), 
