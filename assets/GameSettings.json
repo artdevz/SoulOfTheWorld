@@ -1,14 +1,5 @@
 {
 
-    "audio": { 
-
-        "master": 100,
-        "music": 100,
-        "effects": 100,
-        "mute": false
-
-    },
-
     "controls": {
 
         "keyBindings": {
@@ -31,20 +22,25 @@
 
     },
 
-    "gameplay": {
+    "video": {
+        
+    "width": 1920,
+    "height": 1080,
+    "display": "Windowed",
 
-        "language": "en"
+    "fpsCap": 1000
 
     },
 
-    "video": {
-        
-        "width": 1366,
-        "height": 768,
-        "windodew": false,
+    "audio": { 
 
-        "fpsCap": 500
+        "master": 100,
+        "music": 100,
+        "effects": 100,
+        "mute": false
 
-    }
+    },
+
+    "language": "en"
 
 }
