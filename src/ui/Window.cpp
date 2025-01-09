@@ -24,14 +24,17 @@ void Window::SetDisplay(Display display) {
 
     switch (display) {
 
-        case DP_WINDOWED: break;
-
-        case DP_BORDERLESS:          
-            SetWindowState(FLAG_BORDERLESS_WINDOWED_MODE);
+        case DP_WINDOWED:
+            if (IsWindowFullscreen()) ToggleFullscreen();
+            if (IsWindowState(FLAG_BORDERLESS_WINDOWED_MODE)) SetWindowState(FLAG_WINDOW_MAXIMIZED);
             break;
 
+        // case DP_BORDERLESS:          
+        //     if (!IsWindowState(FLAG_BORDERLESS_WINDOWED_MODE)) SetWindowState(FLAG_BORDERLESS_WINDOWED_MODE);
+        //     break;
+
         case DP_FULLSCREEN:
-            ToggleFullscreen();
+            if (!IsWindowFullscreen()) ToggleFullscreen();
             break;
         
         default:

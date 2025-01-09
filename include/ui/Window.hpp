@@ -1,6 +1,7 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
+#include "raylib.h"
 #include "core/Settings.hpp"
 
 #include <string>
