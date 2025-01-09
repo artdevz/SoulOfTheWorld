@@ -9,7 +9,7 @@
 #include <memory>
 
 int main() {
-    Settings::LoadSettings();
+    Settings::ReadSettings();
     Window(Settings::GetWidth(), Settings::GetHeight(), Settings::GetFpsCap(), "Soul of The World");
 
     std::vector<std::shared_ptr<Screen>> screens = { 

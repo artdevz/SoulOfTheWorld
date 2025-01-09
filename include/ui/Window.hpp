@@ -1,6 +1,8 @@
 #ifndef WINDOW_HPP
 #define WINDOW_HPP
 
+#include "core/Settings.hpp"
+
 #include <string>
 
 class Window {
@@ -11,6 +13,8 @@ class Window {
 
         Window();
         Window(int width, int height, int fps, std::string title);
+        
+        static void SetDisplay(Display);
         // ~Window();
 
         // static Vector2 GetResolution();

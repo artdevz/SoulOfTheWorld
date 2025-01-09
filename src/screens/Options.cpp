@@ -27,10 +27,16 @@ void Options::Update() {
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 430, 200, 40 } )) displayDropdownBoxState = !displayDropdownBoxState; 
 
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 420, 360, 200, 40 } )) {
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 430, 200, 40 } )) Settings::SetDisplayState(DP_WINDOWED);
+    
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 470, 200, 40 } )) {
+        Settings::SetDisplayState(DP_BORDERLESS);
+        displayDropdownBoxState = false;
+    }
 
-
-
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 510, 200, 40 } )) {
+        Settings::SetDisplayState(DP_FULLSCREEN);
+        displayDropdownBoxState = false;
     }
 
     Draw();
@@ -106,17 +112,16 @@ void Options::DrawVideo(int width, int height) {
 
     Rectangle displaySelectBox = { 640, 430, 200, 40 };
     DrawRectangleRec( { displaySelectBox }, BLACK ); 
-    DrawText(Settings::GetDisplayState().c_str(), 645, 435, 24, RAYWHITE);
+    DrawText(displayOptions[Settings::GetDisplayState()].c_str(), 645, 435, 24, RAYWHITE);
 
     if (displayDropdownBoxState) {
 
-        Rectangle displayDropdownBox = { 640, 430, 200, displayOptions.size() * 40} ; 
+        Rectangle displayDropdownBox = { 640, 430, 200, displayOptions.size() * 40 }; 
         DrawRectangleRec( { displayDropdownBox }, BLACK );
 
-        for (int i = 0, posY = 435; i < displayOptions.size(); i++, posY += 40) DrawText(displayOptions[i].c_str(), 645, posY, 24, RAYWHITE);
+        for (int i = 0, posY = 435; i < (int)displayOptions.size(); i++, posY += 40) DrawText(displayOptions[i].c_str(), 645, posY, 24, RAYWHITE);
 
-    }
-    bool dropdownOpen = false;   
+    }      
 
 }
 

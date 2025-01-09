@@ -1,24 +1,49 @@
 #include "core/Settings.hpp"
+#include "ui/Window.hpp"
 
 #include <fstream>
 #include <nlohmann/json.hpp>
+
 using json = nlohmann::json;
 
-json Settings::LoadSettings() {
+std::string Settings::gameSettingsFile = "assets/GameSettings.json";
 
-    std::ifstream file("assets/GameSettings.json");
-    if (!file.is_open()) throw std::runtime_error("Failed to open GameSettings.json");
+json Settings::settings;
+
+json Settings::ReadSettings() {
+
+    std::ifstream inputFile(gameSettingsFile);
+    if (!inputFile.is_open()) throw std::runtime_error("Failed to read GameSettings.json");
     
-    json settings;
-    file >> settings;
+    inputFile >> settings;
     return settings;
+
+}
+
+void Settings::StorageSettings() {
+
+    std::ifstream inputFile(gameSettingsFile);
+    if (!inputFile.is_open()) throw std::runtime_error("Failed to store in GameSettings.json");
+
+    inputFile >> settings;
+    inputFile.close();
+
+}
+
+void Settings::SaveSettings() {
+
+    std::ofstream outputFile(gameSettingsFile);
+    if (!outputFile.is_open()) throw std::runtime_error("Failed to save GameSettings.json");
+
+    outputFile << settings.dump(4);
+    outputFile.close();
 
 }
 
 int Settings::GetWidth() {
 
     try {
-        return LoadSettings()["video"]["width"];
+        return ReadSettings()["video"]["width"];
     }
 
     catch (...) {        
@@ -30,7 +55,7 @@ int Settings::GetWidth() {
 int Settings::GetHeight() {
 
     try {
-        return LoadSettings()["video"]["height"];
+        return ReadSettings()["video"]["height"];
     }
 
     catch (...) {        
@@ -42,7 +67,7 @@ int Settings::GetHeight() {
 int Settings::GetFpsCap() {
 
     try {
-        return LoadSettings()["video"]["fpsCap"];
+        return ReadSettings()["video"]["fpsCap"];
     }
 
     catch (...) {        
@@ -51,20 +76,24 @@ int Settings::GetFpsCap() {
 
 }
 
-std::string Settings::GetDisplayState() {
+int Settings::GetDisplayState() {
 
     try {        
-        return LoadSettings()["video"]["display"];
+        return ReadSettings()["video"]["display"];
     }
     catch(...)
     {
-        return "null";
+        return -1;
     }
 
 }
 
-void Settings::SetDisplayState() {
+void Settings::SetDisplayState(Display display) {
 
-    // UnImpl
+    StorageSettings();
+    settings["video"]["display"] = display;
+    SaveSettings();
+
+    Window::SetDisplay(display);
 
 }

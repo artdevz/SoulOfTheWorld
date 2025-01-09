@@ -6,20 +6,27 @@ using json = nlohmann::json;
 
 enum Display { DP_WINDOWED, DP_BORDERLESS, DP_FULLSCREEN };
 
+// class Window; // Forward de Window
+
 class Settings {
 
     public:
-
-        static json LoadSettings();
+        
+        static json ReadSettings();
+        static void StorageSettings();
+        static void SaveSettings();
 
         static int GetWidth();
         static int GetHeight();
         static int GetFpsCap();
-        static std::string GetDisplayState();
-        static void SetDisplayState();
+        static int GetDisplayState();
+        static void SetDisplayState(Display);
 
     private:
     
+        static json settings;
+        static std::string gameSettingsFile;
+
 };
 
 #endif
