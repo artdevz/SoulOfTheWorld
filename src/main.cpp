@@ -20,41 +20,26 @@ int main() {
         };
 
     std::shared_ptr<Screen> screen = screens[0];
+    std::shared_ptr<Game> game = std::make_shared<Game>();  
     std::unique_ptr<Player> player = nullptr;
-    std::shared_ptr<Game> game = nullptr;  
 
     while (!WindowShouldClose()) { 
 
-        switch (screen->screenType) {
-            
-            case SCR_MAIN:                
-                screen = screens[0];                               
-                break;
-            
-            case SCR_SELECT:
-                screen = screens[1];                
-                break;
+        screen = screens[screen->screenType];
+        
+        if (screen->screenType == SCR_GAME) {
 
-            case SCR_OPTIONS:
-                screen = screens[2];
-                break;
-
-            case SCR_GAME:
-
-                if (!game) {
-                
-                    game = std::make_shared<Game>();
-
-                    if (!player) player = std::make_unique<Player>(Select::getSelectedElement());
+            if (!player) {                
+                    
+                    player = std::make_unique<Player>(Select::getSelectedElement());
 
                     game->SetPlayer(player.get());
                     game->Init();
 
                 }
 
-                screen = game;
-                break;
-        
+            screen = game;
+
         }
 
         screen->Update();

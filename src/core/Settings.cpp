@@ -20,16 +20,6 @@ json Settings::ReadSettings() {
 
 }
 
-void Settings::StorageSettings() {
-
-    std::ifstream inputFile(gameSettingsFile);
-    if (!inputFile.is_open()) throw std::runtime_error("Failed to store in GameSettings.json");
-
-    inputFile >> settings;
-    inputFile.close();
-
-}
-
 void Settings::SaveSettings() {
 
     std::ofstream outputFile(gameSettingsFile);
@@ -90,7 +80,6 @@ int Settings::GetDisplayState() {
 
 void Settings::SetDisplayState(Display display) {
 
-    StorageSettings();
     settings["video"]["display"] = display;
     SaveSettings();
 

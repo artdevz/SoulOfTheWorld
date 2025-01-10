@@ -11,7 +11,7 @@ public:
     static Element selectedElement;
 
     Select();
-    Select(Element);
+        
     static Element getSelectedElement();
     void Init() override;
     void Update() override;

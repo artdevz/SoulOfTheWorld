@@ -6,6 +6,7 @@
 
 Screen::Screen() {
     screenType = SCR_MAIN;
+    TraceLog(LOG_INFO, "Criado Screen");
 }
 
 // Screen::~Screen() {}

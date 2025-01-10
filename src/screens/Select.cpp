@@ -4,15 +4,8 @@
 
 Element Select::selectedElement = E_NONE;
 
-Select::Select() {
-    screenType = SCR_SELECT;
+Select::Select() {    
     TraceLog(LOG_INFO, "Criado o Select"); 
-}
-
-Select::Select(Element element) {
-    screenType = SCR_SELECT;
-    selectedElement = element;  
-    TraceLog(LOG_INFO, "Criado o Select com Element");   
 }
 
 Element Select::getSelectedElement() {
@@ -22,6 +15,7 @@ Element Select::getSelectedElement() {
 void Select::Init() {}
 
 void Select::Update() {
+    Screen::screenType = SCR_SELECT;
     Draw();
 }
 
@@ -76,7 +70,7 @@ void Select::Draw() {
         if (CheckCollisionPointRec(GetMousePosition(), { width/1.88f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = E_EARTH;
         if (CheckCollisionPointRec(GetMousePosition(), { width/1.33f, buttonPosY, buttonWidth, buttonHeight} )) selectedElement = E_AIR;
         
-        if (CheckCollisionPointRec(GetMousePosition(), { width/2.25f, height/1.16f, width/9.14f, height/12.0f } )) screenType = SCR_MAIN;
+        if (CheckCollisionPointRec(GetMousePosition(), { width/2.25f, height/1.16f, width/9.14f, height/12.0f } )) Screen::screenType = SCR_MAIN;
         if (selectedElement != E_NONE) screenType = SCR_GAME;
 
     }

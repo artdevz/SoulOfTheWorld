@@ -12,8 +12,7 @@ class Settings {
 
     public:
         
-        static json ReadSettings();
-        static void StorageSettings();
+        static json ReadSettings();        
         static void SaveSettings();
 
         static int GetWidth();

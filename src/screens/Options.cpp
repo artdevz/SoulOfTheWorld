@@ -7,8 +7,7 @@ std::array<std::string, 3> Options::displayOptions = {"Windowed", "Borderless", 
 
 bool Options::displayDropdownBoxState = false;
 
-Options::Options() {
-    screenType = SCR_OPTIONS;
+Options::Options() {    
     settingsType = OPT_NONE;    
     TraceLog(LOG_INFO, "Criado a Options");
 }
@@ -16,7 +15,8 @@ Options::Options() {
 void Options::Init() {}
 
 void Options::Update() {
-
+    Screen::screenType = SCR_OPTIONS;
+    
     int width = Window::resolution.x, height = Window::resolution.y;
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/5.49f, height/4.5f, width/8.0f, height/13.5f })) settingsType = OPT_CONTROLS;
@@ -24,6 +24,8 @@ void Options::Update() {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/2.26f, height/4.5f, width/8.0f, height/13.5f })) settingsType = OPT_AUDIO;
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/1.75f, height/4.5f, width/8.0f, height/13.5f })) settingsType = OPT_INTERFACE;
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/1.42f, height/4.5f, width/8.0f, height/13.5f })) settingsType = OPT_GAMEPLAY;
+    
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 350, 730, 240, 80 })) Screen::screenType = SCR_MAIN;
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 430, 200, 40 } )) displayDropdownBoxState = !displayDropdownBoxState; 
 
@@ -94,8 +96,8 @@ void Options::DrawButtons(int width, int height) {
 
 void Options::DrawBack(int width, int height) {
 
-    // DrawRectangleRec( { 350, 730, 240, 80}, PURPLE);
-    // DrawText("Back to Menu", 350+5, 735, 24, RAYWHITE);
+    DrawRectangleRec( { 350, 730, 240, 80}, PURPLE);
+    DrawText("Back to Menu", 350+5, 735, 24, RAYWHITE);
 
 }
 
