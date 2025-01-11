@@ -22,8 +22,7 @@ Window::~Window() {
     
     if (IsWindowFullscreen()) ToggleFullscreen();
     SetWindowSize(1920, 1080);
-    TraceLog(LOG_INFO, "Setting Resolution to 1920x1080");
-    CloseWindow();
+    TraceLog(LOG_INFO, "Returning to the original monitor resolution");    
 
 }
 
