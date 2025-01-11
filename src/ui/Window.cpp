@@ -18,6 +18,15 @@ Window::Window(int width, int height, int fps, std::string title) {
 
 }
 
+Window::~Window() {
+    
+    if (IsWindowFullscreen()) ToggleFullscreen();
+    SetWindowSize(1920, 1080);
+    TraceLog(LOG_INFO, "Setting Resolution to 1920x1080");
+    CloseWindow();
+
+}
+
 void Window::SetDisplay(Display display) {
 
     SetWindowSize(resolution.x, resolution.y);
@@ -26,7 +35,7 @@ void Window::SetDisplay(Display display) {
 
         case DP_WINDOWED:
             if (IsWindowFullscreen()) ToggleFullscreen();
-            if (IsWindowState(FLAG_BORDERLESS_WINDOWED_MODE)) SetWindowState(FLAG_WINDOW_MAXIMIZED);
+            // if (IsWindowState(FLAG_BORDERLESS_WINDOWED_MODE)) SetWindowState(FLAG_WINDOW_MAXIMIZED);
             break;
 
         // case DP_BORDERLESS:          

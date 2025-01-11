@@ -15,8 +15,9 @@ class Window {
         Window();
         Window(int width, int height, int fps, std::string title);
         
+        ~Window();
+
         static void SetDisplay(Display);
-        // ~Window();
 
         // static Vector2 GetResolution();
         // void SetResolution(Vector2);

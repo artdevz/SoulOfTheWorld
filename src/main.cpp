@@ -10,7 +10,7 @@
 
 int main() {
     Settings::ReadSettings();
-    Window(Settings::GetWidth(), Settings::GetHeight(), Settings::GetFpsCap(), "Soul of The World");
+    auto window = std::make_unique<Window>(Settings::GetWidth(), Settings::GetHeight(), Settings::GetFpsCap(), "Soul of The World");
 
     std::vector<std::shared_ptr<Screen>> screens = { 
         std::make_shared<Menu>(), 
@@ -19,7 +19,7 @@ int main() {
         std::make_shared<Game>()
         };
 
-    std::shared_ptr<Screen> screen = screens[0];
+    std::shared_ptr<Screen> screen = screens[SCR_MAIN];
     std::shared_ptr<Game> game = std::make_shared<Game>();  
     std::unique_ptr<Player> player = nullptr;
 
@@ -44,7 +44,8 @@ int main() {
 
         screen->Update();
 
-    }   
+    }
 
+    TraceLog(LOG_INFO, "Exiting...");
     return 0;
 }
