@@ -19,6 +19,7 @@ Game::Game() :
     player(nullptr),
     waterBullet() {
         screenType = SCR_GAME;
+        TraceLog(LOG_INFO, "Game Criado"); // Está sendo criado 2x, Talvez: Window criado 2x por isso
     }
 
 void Game::SetPlayer(Player* p) {

@@ -1,4 +1,5 @@
 #include "core/Cam.hpp"
+#include "ui/Window.hpp"
 
 Cam::Cam(Vector2 target, Vector2 offset) {
 
@@ -11,6 +12,8 @@ Cam::Cam(Vector2 target, Vector2 offset) {
 
 void Cam::Update(Vector2 target) {
     camera.target = target;
+    target = {Window::resolution.x / 2, Window::resolution.y / 2};
+    camera.offset = {Window::resolution.x / 2, Window::resolution.y / 2};
 }
 
 Camera2D Cam::GetCamera2D() const {

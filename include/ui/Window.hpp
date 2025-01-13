@@ -13,10 +13,11 @@ class Window {
         static Vector2 resolution;
 
         Window();
-        Window(int width, int height, int fps, std::string title);
+        Window(int, int, int, std::string);
         
         ~Window();
 
+        static void SetResolution(int, int);
         static void SetDisplay(Display);
 
         // static Vector2 GetResolution();

@@ -26,6 +26,13 @@ Window::~Window() {
 
 }
 
+void Window::SetResolution(int width, int height) {
+
+    SetWindowSize(width, height);
+    resolution = {(float)width, (float)height};
+
+}
+
 void Window::SetDisplay(Display display) {
 
     SetWindowSize(resolution.x, resolution.y);

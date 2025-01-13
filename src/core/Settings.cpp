@@ -54,7 +54,15 @@ int Settings::GetHeight() {
 
 }
 
-void Settings::SetResolution(Vector2) {}
+void Settings::SetResolution(Vector2 resolution) {
+
+    settings["video"]["width"] = resolution.x;
+    settings["video"]["height"] = resolution.y;
+    SaveSettings();
+
+    Window::SetResolution(resolution.x, resolution.y);
+
+}
 
 int Settings::GetFpsCap() {
 

@@ -45,32 +45,32 @@ void Options::Update() {
         fpsCapDropdownBoxState = false;
     }
 
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 470, 200, 40 } )) {
+    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 400, 200, 40 } )) {
         Settings::SetResolution(resolutionOptions[0]);
         resolutionDropdownBoxState = false;
     }
 
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 510, 200, 40 } )) {
+    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 440, 200, 40 } )) {
         Settings::SetResolution(resolutionOptions[1]);
         resolutionDropdownBoxState = false;
     }
 
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 550, 200, 40 } )) {
+    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 480, 200, 40 } )) {
         Settings::SetResolution(resolutionOptions[2]);
         resolutionDropdownBoxState = false;
     }
 
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 590, 200, 40 } )) {
+    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 520, 200, 40 } )) {
         Settings::SetResolution(resolutionOptions[3]);
         resolutionDropdownBoxState = false;
     }
 
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 630, 200, 40 } )) {
+    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 560, 200, 40 } )) {
         Settings::SetResolution(resolutionOptions[4]);
         resolutionDropdownBoxState = false;
     }
 
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 670, 200, 40 } )) {
+    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 600, 200, 40 } )) {
         Settings::SetResolution(resolutionOptions[5]);
         resolutionDropdownBoxState = false;
     }
@@ -148,14 +148,14 @@ void Options::DrawButtons(int width, int height) {
 
 void Options::DrawBack(int width, int height) {
 
-    DrawRectangleRec( { 350, 730, 240, 80}, PURPLE);
-    DrawText("Back to Menu", 350+5, 735, 24, RAYWHITE);
+    DrawRectangleRec( { width/5.49f, 730, width/8.0f, height/13.5f }, DARKPURPLE);
+    DrawText("Back to Menu", width/5.49f + 5, 735, 24, RAYWHITE);
 
 }
 
 void Options::DrawControls(int width, int height) {
 
-    TraceLog(LOG_INFO, "OPTIONS -> CONTROLS");
+    // TraceLog(LOG_INFO, "OPTIONS -> CONTROLS");
 
 }
 
@@ -208,18 +208,18 @@ void Options::DrawVideo(int width, int height) {
 
 void Options::DrawAudio(int width, int height) {
 
-    TraceLog(LOG_INFO, "OPTIONS -> AUDIO");
+    // TraceLog(LOG_INFO, "OPTIONS -> AUDIO");
 
 }
 
 void Options::DrawInterface(int width, int height) {
 
-    TraceLog(LOG_INFO, "OPTIONS -> INTERFACE");
+    // TraceLog(LOG_INFO, "OPTIONS -> INTERFACE");
 
 }
 
 void Options::DrawGameplay(int width, int height) {
 
-    TraceLog(LOG_INFO, "OPTIONS -> GAMEPLAY");
+    // TraceLog(LOG_INFO, "OPTIONS -> GAMEPLAY");
 
 }
