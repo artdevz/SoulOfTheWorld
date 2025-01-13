@@ -35,6 +35,7 @@ class Options : public Screen {
 
         static bool resolutionDropdownBoxState;
         static bool displayDropdownBoxState;
+        static bool fpsCapDropdownBoxState;
 
         SettingsType settingsType;
 

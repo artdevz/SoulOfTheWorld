@@ -16,6 +16,7 @@ std::array<int, 6> Options::fpsOptions = { 30, 60, 120, 144, 240, 360 };
 
 bool Options::resolutionDropdownBoxState = false;
 bool Options::displayDropdownBoxState = false;
+bool Options::fpsCapDropdownBoxState = false;
 
 Options::Options() {    
     settingsType = OPT_NONE;    
@@ -38,7 +39,11 @@ void Options::Update() {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 350, 730, 240, 80 })) Screen::screenType = SCR_MAIN;
 
     // Resolution
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 360, 200, 40} )) resolutionDropdownBoxState = !resolutionDropdownBoxState;
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 360, 200, 40} )) {
+        resolutionDropdownBoxState = !resolutionDropdownBoxState;
+        displayDropdownBoxState = false;
+        fpsCapDropdownBoxState = false;
+    }
 
     if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 470, 200, 40 } )) {
         Settings::SetResolution(resolutionOptions[0]);
@@ -71,7 +76,10 @@ void Options::Update() {
     }
 
     // Display
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 430, 200, 40 } )) displayDropdownBoxState = !displayDropdownBoxState; 
+    if (!(resolutionDropdownBoxState || fpsCapDropdownBoxState) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 430, 200, 40 } )) {
+        displayDropdownBoxState = !displayDropdownBoxState;
+        fpsCapDropdownBoxState = false;
+    } 
 
     if (displayDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 470, 200, 40 } )) {
         Settings::SetDisplayState(DP_WINDOWED);
@@ -172,9 +180,13 @@ void Options::DrawVideo(int width, int height) {
 
     }
 
-    Rectangle displaySelectBox = { 640, 430, 200, 40 };
-    DrawRectangleRec( { displaySelectBox }, BLACK ); 
-    DrawText(displayOptions[Settings::GetDisplayState()].c_str(), 645, 435, 24, RAYWHITE);
+    if (!(resolutionDropdownBoxState)) {
+
+        Rectangle displaySelectBox = { 640, 430, 200, 40 };
+        DrawRectangleRec( { displaySelectBox }, BLACK ); 
+        DrawText(displayOptions[Settings::GetDisplayState()].c_str(), 645, 435, 24, RAYWHITE);
+
+    }
 
     if (displayDropdownBoxState) {
 
@@ -185,8 +197,12 @@ void Options::DrawVideo(int width, int height) {
 
     }
 
-    DrawRectangleRec( { 640, 500, 200, 40}, BLACK);
-    DrawText( std::to_string(Settings::GetFpsCap()).c_str(), 645, 505, 24, RAYWHITE );      
+    if (!(resolutionDropdownBoxState || displayDropdownBoxState)) {
+
+        DrawRectangleRec( { 640, 500, 200, 40}, BLACK);
+        DrawText( std::to_string(Settings::GetFpsCap()).c_str(), 645, 505, 24, RAYWHITE );      
+
+    }
 
 }
 
