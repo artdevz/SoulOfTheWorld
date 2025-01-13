@@ -2,6 +2,7 @@
 #define OPTIONS_HPP
 
 #include "roots/Screen.hpp"
+#include "raylib.h"
 
 #include <array>
 
@@ -11,7 +12,9 @@ class Options : public Screen {
 
     public:
         
+        static std::array<Vector2, 6> resolutionOptions;
         static std::array<std::string, 3> displayOptions;
+        static std::array<int, 6> fpsOptions;
 
         Options();
 
@@ -30,6 +33,7 @@ class Options : public Screen {
 
     private:
 
+        static bool resolutionDropdownBoxState;
         static bool displayDropdownBoxState;
 
         SettingsType settingsType;

@@ -54,6 +54,8 @@ int Settings::GetHeight() {
 
 }
 
+void Settings::SetResolution(Vector2) {}
+
 int Settings::GetFpsCap() {
 
     try {
@@ -65,6 +67,8 @@ int Settings::GetFpsCap() {
     }
 
 }
+
+void Settings::SetFpsCap(int fpsCap) {}
 
 int Settings::GetDisplayState() {
 

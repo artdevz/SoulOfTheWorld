@@ -1,6 +1,7 @@
 #ifndef SETTINGS_HPP
 #define SETTINGS_HPP
 
+#include "raylib.h"
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
@@ -17,7 +18,11 @@ class Settings {
 
         static int GetWidth();
         static int GetHeight();
+        static void SetResolution(Vector2);
+
         static int GetFpsCap();
+        static void SetFpsCap(int);
+
         static int GetDisplayState();
         static void SetDisplayState(Display);
 

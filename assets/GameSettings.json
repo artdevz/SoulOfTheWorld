@@ -21,7 +21,7 @@
     },
     "language": "en",
     "video": {
-        "display": 2,
+        "display": 0,
         "fpsCap": 10000,
         "height": 720,
         "width": 1280
