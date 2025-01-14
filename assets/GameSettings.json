@@ -23,7 +23,7 @@
     "video": {
         "display": 0,
         "fpsCap": 10000,
-        "height": 1080.0,
-        "width": 1920.0
+        "height": 720.0,
+        "width": 1280.0
     }
 }

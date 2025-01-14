@@ -12,6 +12,11 @@ class Options : public Screen {
 
     public:
         
+        static std::array<Rectangle, 5> optionsButtons;
+        static std::array<Rectangle, 6> resolutionButtons;
+        static std::array<Rectangle, 3> displayButtons;
+        static std::array<Rectangle, 6> fpsButtons;
+        
         static std::array<Vector2, 6> resolutionOptions;
         static std::array<std::string, 3> displayOptions;
         static std::array<int, 6> fpsOptions;

@@ -3,14 +3,38 @@
 #include "screens/Options.hpp"
 #include "ui/Window.hpp"
 
-std::array<Vector2, 6> Options::resolutionOptions = { 
-    Vector2{ 720, 480 },
-    Vector2{ 1280, 720 },
-    Vector2{ 1600, 900 },
-    Vector2{ 1920, 1080 },
-    Vector2{ 2560, 1440 },
-    Vector2{ 3840, 2160 } 
-    };
+int width = Window::resolution.x, height = Window::resolution.y;
+
+std::array<Rectangle, 5> Options::optionsButtons = { Rectangle
+    // Por motivo ainda desconhecido, width e height está Nulo (Achar solução)
+    { width/5.49f, height/4.5f, width/8.0f, height/13.5f }, // Controls
+    { 400.0f, 160.0f, 160.0f, 53.3f},//{ width/3.2f, height/4.5f, width/8.0f, height/13.5f },  // Video
+    { width/2.26f, height/4.5f, width/8.0f, height/13.5f }, // Audio
+    { width/1.75f, height/4.5f, width/8.0f, height/13.5f }, // Interface
+    { width/1.42f, height/4.5f, width/8.0f, height/13.5f }  // Language
+
+};
+
+std::array<Rectangle, 6> Options::resolutionButtons = { Rectangle
+
+    { 640, 400, 200, 40 },  // 720x480
+    { 640, 440, 200, 40 },  // 1280x720
+    { 640, 480, 200, 40 },  // 1600x900
+    { 640, 520, 200, 40 },  // 1920x1080
+    { 640, 560, 200, 40 },  // 2560x1440
+    { 640, 600, 200, 40 }   // 3840x2160
+
+};
+
+std::array<Vector2, 6> Options::resolutionOptions = {  Vector2
+    { 720, 480 },
+    { 1280, 720 },
+    { 1600, 900 },
+    { 1920, 1080 },
+    { 2560, 1440 },
+    { 3840, 2160 } 
+};
+
 std::array<std::string, 3> Options::displayOptions = {"Windowed", "Borderless", "Fullscreen"};
 std::array<int, 6> Options::fpsOptions = { 30, 60, 120, 144, 240, 360 };
 
@@ -28,14 +52,8 @@ void Options::Init() {}
 void Options::Update() {
     Screen::screenType = SCR_OPTIONS;
     
-    int width = Window::resolution.x, height = Window::resolution.y;
-
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/5.49f, height/4.5f, width/8.0f, height/13.5f })) settingsType = OPT_CONTROLS;
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/3.2f, height/4.5f, width/8.0f, height/13.5f })) settingsType = OPT_VIDEO;
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/2.26f, height/4.5f, width/8.0f, height/13.5f })) settingsType = OPT_AUDIO;
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/1.75f, height/4.5f, width/8.0f, height/13.5f })) settingsType = OPT_INTERFACE;
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { width/1.42f, height/4.5f, width/8.0f, height/13.5f })) settingsType = OPT_GAMEPLAY;
-    
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) for (int i = 0; i < (int)optionsButtons.size(); i++) if (CheckCollisionPointRec(GetMousePosition(), optionsButtons[i])) settingsType = (SettingsType)(i+1);
+            
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 350, 730, 240, 80 })) Screen::screenType = SCR_MAIN;
 
     // Resolution
@@ -44,31 +62,20 @@ void Options::Update() {
         displayDropdownBoxState = false;
         fpsCapDropdownBoxState = false;
     }
-
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 400, 200, 40 } )) {
-        Settings::SetResolution(resolutionOptions[0]);
-        resolutionDropdownBoxState = false;
+    
+    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        for (int i = 0; i < (int)resolutionButtons.size(); i++) {
+            if (CheckCollisionPointRec(GetMousePosition(), resolutionButtons[i])) {
+                Settings::SetResolution(resolutionOptions[i]);
+                resolutionDropdownBoxState = false;
+            }
+        }
     }
 
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 440, 200, 40 } )) {
-        Settings::SetResolution(resolutionOptions[1]);
+    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 600, 200, 40 } )) {
+        Settings::SetResolution(resolutionOptions[5]);
         resolutionDropdownBoxState = false;
-    }
-
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 480, 200, 40 } )) {
-        Settings::SetResolution(resolutionOptions[2]);
-        resolutionDropdownBoxState = false;
-    }
-
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 520, 200, 40 } )) {
-        Settings::SetResolution(resolutionOptions[3]);
-        resolutionDropdownBoxState = false;
-    }
-
-    if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 560, 200, 40 } )) {
-        Settings::SetResolution(resolutionOptions[4]);
-        resolutionDropdownBoxState = false;
-    }
+        }
 
     if (resolutionDropdownBoxState && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), { 640, 600, 200, 40 } )) {
         Settings::SetResolution(resolutionOptions[5]);
@@ -155,7 +162,7 @@ void Options::DrawBack(int width, int height) {
 
 void Options::DrawControls(int width, int height) {
 
-    // TraceLog(LOG_INFO, "OPTIONS -> CONTROLS");
+    TraceLog(LOG_INFO, "OPTIONS -> CONTROLS");
 
 }
 
@@ -208,18 +215,18 @@ void Options::DrawVideo(int width, int height) {
 
 void Options::DrawAudio(int width, int height) {
 
-    // TraceLog(LOG_INFO, "OPTIONS -> AUDIO");
+    TraceLog(LOG_INFO, "OPTIONS -> AUDIO");
 
 }
 
 void Options::DrawInterface(int width, int height) {
 
-    // TraceLog(LOG_INFO, "OPTIONS -> INTERFACE");
+    TraceLog(LOG_INFO, "OPTIONS -> INTERFACE");
 
 }
 
 void Options::DrawGameplay(int width, int height) {
 
-    // TraceLog(LOG_INFO, "OPTIONS -> GAMEPLAY");
+    TraceLog(LOG_INFO, "OPTIONS -> GAMEPLAY");
 
 }
