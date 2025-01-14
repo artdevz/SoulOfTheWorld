@@ -23,6 +23,10 @@ int main() {
     std::shared_ptr<Game> game = std::make_shared<Game>();  
     std::unique_ptr<Player> player = nullptr;
 
+    screens[0]->Init();
+    screens[1]->Init();
+    screens[2]->Init();
+
     while (!WindowShouldClose()) { 
 
         screen = screens[screen->screenType];
