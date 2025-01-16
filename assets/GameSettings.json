@@ -22,8 +22,9 @@
     "language": "en",
     "video": {
         "display": 0,
-        "fpsCap": 10000,
-        "height": 900.0,
-        "width": 1600.0
+        "fpsCap": 144,
+        "fpsUnlimited": false,
+        "height": 720.0,
+        "width": 1280.0
     }
 }

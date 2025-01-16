@@ -19,6 +19,7 @@ class Window {
 
         static void SetResolution(int, int);
         static void SetDisplay(Display);
+        static void SetFpsCap(int);
 
         // static Vector2 GetResolution();
         // void SetResolution(Vector2);

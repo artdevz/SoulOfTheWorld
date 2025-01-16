@@ -13,6 +13,7 @@ Window::Window(int width, int height, int fps, std::string title) {
     InitWindow(width, height, title.c_str());
     
     SetDisplay((Display)Settings::GetDisplayState());
+    if (Settings::GetUnlimitedFps()) SetTargetFPS(2147483647); // 2147483647 = MaxInt
     SetTargetFPS(fps);
     // SetExitKey(KEY_NULL);
 
@@ -56,5 +57,12 @@ void Window::SetDisplay(Display display) {
             break;
 
     }
+
+}
+
+void Window::SetFpsCap(int fpsCap) {
+
+    SetTargetFPS(fpsCap);
+    TraceLog(LOG_INFO, "FPS changed to: %d", fpsCap);
 
 }

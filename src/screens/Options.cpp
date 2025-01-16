@@ -6,10 +6,13 @@
 std::array<Rectangle, 5> Options::optionsButtons;
 std::array<Rectangle, 6> Options::resolutionButtons;
 std::array<Rectangle, 3> Options::displayButtons;
+std::array<Rectangle, 6> Options::fpsButtons;
 
 std::array<Vector2, 6> Options::resolutionOptions = { Vector2 { 720, 480 }, { 1280, 720 }, { 1600, 900 }, { 1920, 1080 }, { 2560, 1440 }, { 3840, 2160 } };
 std::array<std::string, 3> Options::displayOptions = {"Windowed", "Borderless", "Fullscreen"};
-std::array<int, 6> Options::fpsOptions = { 30, 60, 120, 144, 240, 360 };
+std::array<int, 5> Options::fpsOptions = { 30, 60, 120, 144, 240 };
+
+bool Options::fpsUnlimited;
 
 bool Options::resolutionDropdownBoxState = false;
 bool Options::displayDropdownBoxState = false;
@@ -23,6 +26,8 @@ Options::Options() {
 void Options::Init() {
 
     int width = Window::resolution.x, height = Window::resolution.y;
+
+    fpsUnlimited = Settings::GetUnlimitedFps();
 
     optionsButtons = { Rectangle
 
@@ -51,6 +56,16 @@ void Options::Init() {
         { 640, 510, 200, 40 },  // Borderless
         { 640, 550, 200, 40 }   // Fullscreen
 
+    };
+
+    fpsButtons = { Rectangle 
+    
+        { 640, 610, 200, 40 },  // 30 FPS
+        { 640, 650, 200, 40 },  // 60 FPS
+        { 640, 690, 200, 40 },  // 120 FPS
+        { 640, 730, 200, 40 },  // 144 FPS
+        { 640, 770, 200, 40 }   // 240 FPS
+
     };  
 
 }
@@ -74,6 +89,14 @@ void Options::Update() {
         // Display
         if (CheckCollisionPointRec(GetMousePosition(), { 640, 430, 200, 40} ) && !resolutionDropdownBoxState) displayDropdownBoxState = !displayDropdownBoxState;
         if (displayDropdownBoxState) for (int i = 0; i < (int)displayButtons.size(); i++) if (CheckCollisionPointRec(GetMousePosition(), displayButtons[i])) Settings::SetDisplayState((Display)i);
+
+        // Fps
+        if (CheckCollisionPointRec(GetMousePosition(), { 640, 505, 30, 30 } ) && !(resolutionDropdownBoxState && displayDropdownBoxState)) {
+            Settings::SetUnlimitedFps(fpsUnlimited); // 2147483647 = MaxInt
+            fpsUnlimited = !fpsUnlimited;
+        }
+        if (CheckCollisionPointRec(GetMousePosition(), { 640, 570, 200, 40 } ) && !(resolutionDropdownBoxState && displayDropdownBoxState)) fpsCapDropdownBoxState = !fpsCapDropdownBoxState;
+        if (fpsCapDropdownBoxState) for (int i = 0; i < (int)fpsButtons.size(); i++) if (CheckCollisionPointRec(GetMousePosition(), fpsButtons[i])) Settings::SetFpsCap(fpsOptions[i]);
 
         // Close Boxes
         if (!(CheckCollisionPointRec(GetMousePosition(), { 640, 360, 200, 40} ))) resolutionDropdownBoxState = false;
@@ -150,7 +173,8 @@ void Options::DrawVideo(int width, int height) {
     
     DrawText("Resolution:", 380, 360, 36, RAYWHITE);
     DrawText("Display Mode:", 380, 430, 36, RAYWHITE);
-    DrawText("FPS Limit:", 380, 500, 36, RAYWHITE);
+    DrawText("FPS Unlimited:", 380, 500, 36, RAYWHITE);
+    DrawText("FPS Limit:", 380, 570, 36, RAYWHITE);
 
     DrawRectangleRec( { 640, 360, 200, 40 }, BLACK );
     DrawText( (std::to_string(Settings::GetWidth()) + " x " + std::to_string(Settings::GetHeight())).c_str() , 645, 365, 24, RAYWHITE);
@@ -184,10 +208,27 @@ void Options::DrawVideo(int width, int height) {
 
     if (!(resolutionDropdownBoxState || displayDropdownBoxState)) {
 
-        DrawRectangleRec( { 640, 500, 200, 40}, BLACK);
-        DrawText( std::to_string(Settings::GetFpsCap()).c_str(), 645, 505, 24, RAYWHITE );      
+        DrawRectangleRec( { 640, 505, 30, 30 }, BLACK );
+        if (fpsUnlimited) DrawRectangleRec( { 645, 510, 20, 20 }, GRAY ); // 2147483647
 
     }
+
+    if (!(resolutionDropdownBoxState || displayDropdownBoxState)) {
+
+        DrawRectangleRec( { 640, 570, 200, 40 }, BLACK);
+        DrawText( std::to_string(Settings::GetFpsCap()).c_str(), 645, 575, 24, RAYWHITE );      
+
+    }
+
+    /*
+    if (fpsCapDropdownBoxState) {
+
+        Rectangle fpsCapDropdownBox = { 640, 500+40, 200, fpsOptions.size() * 40 };
+        DrawRectangleRec( { fpsCapDropdownBox }, BLACK );
+
+        for (int i = 0, posY = 545; i < (int)fpsOptions.size(); i++, posY += 40) DrawText(std::to_string(fpsOptions[i]).c_str(), 645, posY, 24, RAYWHITE);
+
+    }*/
 
 }
 

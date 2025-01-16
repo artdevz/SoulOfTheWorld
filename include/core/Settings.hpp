@@ -20,6 +20,9 @@ class Settings {
         static int GetHeight();
         static void SetResolution(Vector2);
 
+        static bool GetUnlimitedFps();
+        static void SetUnlimitedFps(bool);
+
         static int GetFpsCap();
         static void SetFpsCap(int);
 

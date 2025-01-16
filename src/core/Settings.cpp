@@ -76,7 +76,35 @@ int Settings::GetFpsCap() {
 
 }
 
-void Settings::SetFpsCap(int fpsCap) {}
+bool Settings::GetUnlimitedFps() {
+
+    try {
+        return ReadSettings()["video"]["fpsUnlimited"];
+    }
+
+    catch (...) {
+        return false;
+    }
+
+}
+
+void Settings::SetUnlimitedFps(bool state) {
+
+    settings["video"]["fpsUnlimited"] = !state;
+    
+    Window::SetFpsCap(GetFpsCap());
+    if (state) Window::SetFpsCap(2147483647); // 2147483647 = MaxInt
+
+}
+
+void Settings::SetFpsCap(int fpsCap) {
+
+    settings["video"]["fpsCap"] = fpsCap;
+    SaveSettings();
+
+    Window::SetFpsCap(fpsCap);
+
+}
 
 int Settings::GetDisplayState() {
 

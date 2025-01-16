@@ -19,7 +19,7 @@ class Options : public Screen {
         
         static std::array<Vector2, 6> resolutionOptions;
         static std::array<std::string, 3> displayOptions;
-        static std::array<int, 6> fpsOptions;
+        static std::array<int, 5> fpsOptions;
 
         Options();
 
@@ -37,6 +37,8 @@ class Options : public Screen {
         void DrawGameplay(int, int); // Language
 
     private:
+
+        static bool fpsUnlimited;
 
         static bool resolutionDropdownBoxState;
         static bool displayDropdownBoxState;
