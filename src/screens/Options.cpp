@@ -3,6 +3,11 @@
 #include "screens/Options.hpp"
 #include "ui/Window.hpp"
 
+#include <vector>
+#include <utility>
+
+std::vector<std::pair<Rectangle, void(*)()>> Options::buttons;
+
 std::array<Rectangle, 5> Options::optionsButtons;
 std::array<Rectangle, 6> Options::resolutionButtons;
 std::array<Rectangle, 3> Options::displayButtons;
@@ -28,6 +33,16 @@ void Options::Init() {
     int width = Window::resolution.x, height = Window::resolution.y;
 
     fpsUnlimited = (bool)Settings::GetUnlimitedFps();
+
+    /*buttons = { std::pair {
+
+            Rectangle{}, &DrawControls
+
+        }
+
+    };*/ // BUG!
+
+    // buttons.emplace_back(std::pair(Rectangle{ width / 5.49f, height / 4.5f, width / 8.0f, height / 13.5f }, &DrawControls));
 
     optionsButtons = { Rectangle
 
@@ -125,7 +140,7 @@ void Options::Draw() {
 
         case OPT_NONE: break;
 
-        case OPT_CONTROLS: DrawControls(width, height); break;
+        case OPT_CONTROLS: DrawControls(); break;
         case OPT_VIDEO: DrawVideo(width, height); break;
         case OPT_AUDIO: DrawAudio(width, height); break;
         case OPT_INTERFACE: DrawInterface(width, height); break;
@@ -161,7 +176,7 @@ void Options::DrawBack(int width, int height) {
 
 }
 
-void Options::DrawControls(int width, int height) {
+void Options::DrawControls() {
 
     // TraceLog(LOG_INFO, "OPTIONS -> CONTROLS");
 

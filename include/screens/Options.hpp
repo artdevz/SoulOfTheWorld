@@ -12,6 +12,8 @@ class Options : public Screen {
 
     public:
         
+        static std::vector<std::pair<Rectangle, void(*)()>> buttons;
+
         static std::array<Rectangle, 5> optionsButtons;
         static std::array<Rectangle, 6> resolutionButtons;
         static std::array<Rectangle, 3> displayButtons;
@@ -30,7 +32,7 @@ class Options : public Screen {
         void DrawButtons(int, int);
         void DrawBack(int, int);
 
-        void DrawControls(int, int);
+        void DrawControls();
         void DrawVideo(int, int);
         void DrawAudio(int, int);
         void DrawInterface(int, int);
