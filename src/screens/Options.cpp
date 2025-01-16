@@ -27,7 +27,7 @@ void Options::Init() {
 
     int width = Window::resolution.x, height = Window::resolution.y;
 
-    fpsUnlimited = Settings::GetUnlimitedFps();
+    fpsUnlimited = (bool)Settings::GetUnlimitedFps();
 
     optionsButtons = { Rectangle
 
@@ -92,7 +92,7 @@ void Options::Update() {
 
         // Fps
         if (CheckCollisionPointRec(GetMousePosition(), { 640, 505, 30, 30 } ) && !(resolutionDropdownBoxState && displayDropdownBoxState)) {
-            Settings::SetUnlimitedFps(fpsUnlimited); // 2147483647 = MaxInt
+            Settings::SetUnlimitedFps(!fpsUnlimited);
             fpsUnlimited = !fpsUnlimited;
         }
         if (CheckCollisionPointRec(GetMousePosition(), { 640, 570, 200, 40 } ) && !(resolutionDropdownBoxState && displayDropdownBoxState)) fpsCapDropdownBoxState = !fpsCapDropdownBoxState;

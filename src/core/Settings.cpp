@@ -90,7 +90,8 @@ bool Settings::GetUnlimitedFps() {
 
 void Settings::SetUnlimitedFps(bool state) {
 
-    settings["video"]["fpsUnlimited"] = !state;
+    settings["video"]["fpsUnlimited"] = !settings["video"]["fpsUnlimited"];
+    SaveSettings();
     
     Window::SetFpsCap(GetFpsCap());
     if (state) Window::SetFpsCap(2147483647); // 2147483647 = MaxInt

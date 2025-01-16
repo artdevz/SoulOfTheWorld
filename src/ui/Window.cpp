@@ -13,7 +13,7 @@ Window::Window(int width, int height, int fps, std::string title) {
     InitWindow(width, height, title.c_str());
     
     SetDisplay((Display)Settings::GetDisplayState());
-    if (Settings::GetUnlimitedFps()) SetTargetFPS(2147483647); // 2147483647 = MaxInt
+    if ((bool)Settings::GetUnlimitedFps()) fps = 2147483647; // 2147483647 = MaxInt
     SetTargetFPS(fps);
     // SetExitKey(KEY_NULL);
 
